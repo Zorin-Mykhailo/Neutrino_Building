@@ -4,10 +4,13 @@ using System.Collections;
 namespace Building.DataModel;
 public class EntitySet<T> : IEnumerable<T> where T : Entity
 {
+    public Int32 Id { get; init; }
+
     public String Name { get; init; }
 
-    public EntitySet(String name)
+    public EntitySet(Int32 id, String name)
     {
+        Id = id;
         Name = name;
     }
 
@@ -35,8 +38,5 @@ public class EntitySet<T> : IEnumerable<T> where T : Entity
     
     IEnumerator IEnumerable.GetEnumerator() => _items.Values.GetEnumerator();
 
-    public void ForEach(Action<T> action)
-    {
-        foreach(T item in _items.Values) action(item);
-    }
+    public override String ToString() => $" {Id, 4} | {Name}";
 }

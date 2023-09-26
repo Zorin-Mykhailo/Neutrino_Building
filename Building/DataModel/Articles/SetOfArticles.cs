@@ -2,7 +2,7 @@
 
 public class SetOfArticles : EntitySet<Article>
 {
-    public SetOfArticles(String name) : base(name)
+    public SetOfArticles(Int32 id, String name) : base(id, name)
     {
     }
 }
