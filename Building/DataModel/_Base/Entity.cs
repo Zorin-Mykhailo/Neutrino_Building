@@ -1,4 +1,4 @@
-﻿namespace Building.DataModel;
+﻿namespace Building;
 
 public class Entity : IEquatable<Entity?>
 {
@@ -22,5 +22,7 @@ public class Entity : IEquatable<Entity?>
 
     public static Boolean operator !=(Entity? left, Entity? right) => !(left == right);
 
-    public override String ToString() => $"🔑 {Id,-6}";
+    public override String ToString() => $"[{(Actuality == EActuality.Actual ? "✔️" : "⛔")} {Id,-6}]";
+
+    public virtual String ToEntityView() => $"Entity {ToString()}";
 }

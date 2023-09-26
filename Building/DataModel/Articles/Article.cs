@@ -1,5 +1,4 @@
-﻿using System;
-namespace Building.DataModel.Articles;
+﻿namespace Building;
 
 public class Article : Entity
 {
@@ -16,5 +15,5 @@ public class Article : Entity
         => CreationTime = DateTime.Now;
 
     public override String ToString() 
-        => $"{base.ToString()} 📝 [{CreationTime:yyyy.MM.dd(ddd) HH:mm}] {Title}";
+        => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {Title}";
 }

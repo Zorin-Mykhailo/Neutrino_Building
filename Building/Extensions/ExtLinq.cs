@@ -1,4 +1,4 @@
-﻿namespace Building.Extensions;
+﻿namespace Building;
 
 public static class ExtLinq
 {

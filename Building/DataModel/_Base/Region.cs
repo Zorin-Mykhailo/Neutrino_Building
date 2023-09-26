@@ -1,4 +1,4 @@
-﻿namespace Building.DataModel;
+﻿namespace Building;
 public class Region
 {
     public required Int32 Id { get; init; }

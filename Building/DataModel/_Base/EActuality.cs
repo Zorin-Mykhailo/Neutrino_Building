@@ -1,4 +1,4 @@
-﻿namespace Building.DataModel;
+﻿namespace Building;
 
 /// <summary> Актуальність </summary>
 public enum EActuality

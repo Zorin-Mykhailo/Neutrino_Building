@@ -1,8 +1,4 @@
-﻿using Building.DataModel;
-using Building.DataModel.Articles;
-using Building.Extensions;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace Building;
 
@@ -15,7 +11,7 @@ internal class Program
 
         SetOfArticles articles = new(1, "Статті") 
         {
-            new (1) { Title = "Стаття 1" },
+            new (1) { Title = "Стаття 1", Actuality = EActuality.Deprecated },
             new (34) { Title = "Стаття 2" }
         };
 
@@ -24,10 +20,6 @@ internal class Program
              Articles = articles,
         };
 
-        Console.WriteLine(mainMenu.GetMenuItems());
-        mainMenu.Articles.ForEach(e => Console.WriteLine(e));
-
-
-        //articles.Where(e => e.Id > 1).ForEach(e => Console.WriteLine(e.Title));
+        mainMenu.ShowMenu();
     }
 }
