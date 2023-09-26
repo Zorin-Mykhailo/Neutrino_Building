@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataModel\Companies\" />
+    <Folder Include="DataModel\MainPage\" />
+    <Folder Include="DataModel\Masters\" />
+    <Folder Include="DataModel\Prices\" />
+    <Folder Include="DataModel\Users\" />
+  </ItemGroup>
+
 </Project>
