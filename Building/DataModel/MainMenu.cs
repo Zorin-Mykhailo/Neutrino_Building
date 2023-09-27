@@ -1,4 +1,6 @@
-﻿namespace Building;
+﻿// DataModel/MainMenu.cs
+
+namespace Building;
 
 public class MainMenu
 {
@@ -6,8 +8,10 @@ public class MainMenu
 
     public required SetOfArticles Articles { get; init; }
 
-    // 
-
+#region #Support
+    /// <summary> Звернення в тех. підтримку </summary>
+    public required SetOfSupportTickets SupportTickets { get; init; }
+#endregion #Support
 
     public MainMenu()
     {
@@ -15,6 +19,9 @@ public class MainMenu
         {
             // 0 - Вихід додається автоматично
             new (1, "Статті"),
+#region #Support
+            new (2, "Технічна підтримка")
+#endregion #Support
             // new (2, "Ваш пункт меню"), // Додайте ваш пункт меню
         };
 
@@ -46,7 +53,11 @@ public class MainMenu
             case 1:
                 Articles.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-
+#region #Support
+            case 2:
+                SupportTickets.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
+#endregion #Support
         }
         return EWorkWithMenu.QuitMenu;
     }
