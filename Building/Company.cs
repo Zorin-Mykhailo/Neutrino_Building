@@ -8,21 +8,34 @@ namespace Building
 {
     public class Company
     {
-        // Назва команії, направлення у галузі (воно не змінюється), опис
-        private string _nameOfCompany;
-        private const string _directionInIndustry = "Construction and restoration";
-        readonly string _description;
-
-        public required string nameOfCompany
+        private int _id;
+        public const string DirectionInIndustry = "Construction and restoration";
+        private string _description;
+        public readonly string DateOfCreate = DateTime.Now.ToShortDateString();
+        private string _owner;
+        public required string NameOfCompany { get; init; }
+        public string Description
         {
-            get
-            {
-                return _nameOfCompany;
-            }
-            set
-            {
-                _nameOfCompany = value;
-            }
+            get {return _description;}
+            set {_description = value;}
+        }
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+        public string Owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+        public string GetTechInfo()
+        {
+            return $"ID:{Id}, {NameOfCompany}\n{Description}\n{DateOfCreate}";
+        }
+        public string GetTechInfo(string customeDescription)
+        {
+            return $"ID:{Id}, {NameOfCompany}\n{customeDescription}\n{DateOfCreate}";
         }
 
     }
