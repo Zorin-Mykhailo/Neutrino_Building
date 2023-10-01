@@ -5,17 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Building.Prices;
-internal class Materials
+internal class Instruments
 {
-
-    static readonly int DiscountPercantage = 7;
+    static readonly int DiscountPercantage = 10;
 
     public required int ID { get; init; }
     public string Name { get; set; }
     public int Price { get; set; }
+    public string MakerCompany { get; set; }
 
-    public const string Group = "Матеріали";
-
+    public const string Group = "Інструменти";
 
     public void ShowPosition()
     {
@@ -29,7 +28,7 @@ internal class Materials
         {
             int Discount = Price / 100 * DiscountPercantage;
             Price = Price - Discount;
-            Console.WriteLine("$Найменування : {Name} \n Оптова ціна : {Price} ");
+            Console.WriteLine("$Найменування : {Name} \n Фірма : {MakerCompany} \n Ціна зі знижкою : {Price} ");
         }
     }
 }
