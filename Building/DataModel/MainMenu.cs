@@ -19,6 +19,7 @@ public class MainMenu
         {
             // 0 - Вихід додається автоматично
             new (1, "Статті"),
+            new (3, "Ціни"),
 #region #Support
             new (2, "Технічна підтримка")
 #endregion #Support
