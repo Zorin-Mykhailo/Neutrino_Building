@@ -7,6 +7,7 @@ public class Master : Entity
     public required String Email { get; init; }
     public EMasterType MasterType { get; set; } = EMasterType.General;
     public const String Phrase = "I can fix anything!";
+    public readonly Int64 PhoneNumber;
 
     public Master(Int32 id) : base(id)
     {
@@ -21,12 +22,12 @@ public class Master : Entity
     public override String ToString()
         => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {FirstName} {LastName} -- from {Email} -- {MasterType.AsStr()}";
 
-    public string GetInfo(int experience)
+    public String GetInfo(Int32 experience)
     {
         return $"I'm a {MasterType} with {experience} of experience.";
     }
 
-    public string GetInfo(int experience, int age)
+    public String GetInfo(Int32 experience, Int32 age)
     {
         return $"I'm a {age}-year old {MasterType} with {experience} of experience.";
     }
