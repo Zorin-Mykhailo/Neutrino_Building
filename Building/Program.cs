@@ -45,14 +45,80 @@ internal class Program
                 State = ESupportTicketState.Closed
             }
         };
-#endregion #Support
+        #endregion #Support
+
+
+        #region #Prices
+        SetOfPrices prices = new (3, "Ціни")
+        {
+            new (1)
+            {
+               Name = "Мішок цементу",
+               ItemPrice = 168.25m ,
+               Type = EType.Material
+            },
+            new (2)
+            {
+               Name = "Мішок штукатурки",
+               ItemPrice = 126.0m ,
+               Type = EType.Material
+            },
+            new (3)
+            {
+               Name = "Мішок шпаклівки",
+               ItemPrice = 450.0m ,
+               Type = EType.Material
+            },
+            new (4)
+            {
+               Name = "Ларезний рівень",
+               ItemPrice = 2250.0m ,
+               Type = EType.Instrument
+            },
+            new (5)
+            {
+               Name = "Перфоратор",
+               ItemPrice = 3100.0m ,
+               Type = EType.Instrument
+            },
+            new (6)
+            {
+               Name = "Набір викруток",
+               ItemPrice = 899.0m ,
+               Type = EType.Instrument
+            },
+            new (7)
+            {
+               Name = "Ремонт даху будівлі, метр квадратний",
+               ItemPrice = 880.0m ,
+               Type = EType.Service
+            },
+            new (8)
+            {
+               Name = "Автоперевезення, ціна за 100 кг",
+               ItemPrice = 1100.0m ,
+               Type = EType.Service
+            },
+            new (9)
+            {
+               Name = "Консультація електрика",
+               ItemPrice = 500.0m ,
+               Type = EType.Service
+            }
+        };
+#endregion #Prices
+
 
         MainMenu mainMenu = new()
         {
              Articles = articles,
 #region #Support
-             SupportTickets = supportTickets
+             SupportTickets = supportTickets,
 #endregion #Support
+
+#region #Prices
+             Prices = prices,
+#endregion #Prices
         };
 
         mainMenu.ShowMenu();

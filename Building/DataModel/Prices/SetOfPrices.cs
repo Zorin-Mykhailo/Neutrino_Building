@@ -26,18 +26,14 @@ public class SetOfPrices : EntitySet<Price>
                 return EWorkWithMenu.QuitMenu;
 
             case 1:
-                this.ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
-
-            case 2:
                 this.Where(e => e.Type == EType.Material).ForEach(e => Console.WriteLine(e));
                 return EWorkWithMenu.ContinueWork;
 
-            case 3:
+            case 2:
                 this.Where(e => e.Type == EType.Instrument).ForEach(e => Console.WriteLine(e));
                 return EWorkWithMenu.ContinueWork;
 
-            case 4:
+            case 3:
                 this.Where(e => e.Type == EType.Service).ForEach(e => Console.WriteLine(e));
                 return EWorkWithMenu.ContinueWork; 
         }

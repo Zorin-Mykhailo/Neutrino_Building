@@ -13,16 +13,24 @@ public class MainMenu
     public required SetOfSupportTickets SupportTickets { get; init; }
 #endregion #Support
 
+#region #Prices
+    public required SetOfPrices Prices { get; init; }
+#endregion #Prices
+
     public MainMenu()
     {
         Menu = new("ГОЛОВНЕ МЕНЮ", ConsoleColor.Green)
         {
             // 0 - Вихід додається автоматично
             new (1, "Статті"),
-            new (3, "Ціни"),
+            
 #region #Support
-            new (2, "Технічна підтримка")
+            new (2, "Технічна підтримка"),
 #endregion #Support
+
+#region #Prices
+            new (3, "Ціни"),
+#endregion #Prices
             // new (2, "Ваш пункт меню"), // Додайте ваш пункт меню
         };
 
@@ -54,11 +62,17 @@ public class MainMenu
             case 1:
                 Articles.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-#region #Support
+            #region #Support
             case 2:
                 SupportTickets.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-#endregion #Support
+            #endregion #Support
+            #region #Prices
+            case 3:
+                Prices.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
+            #endregion #Prices
+
         }
         return EWorkWithMenu.QuitMenu;
     }
