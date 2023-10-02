@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DataModel\Companies\**" />
+   
     <Compile Remove="DataModel\MainPage\**" />
     <Compile Remove="DataModel\Masters\**" />
     <Compile Remove="DataModel\Prices\**" />
     <Compile Remove="DataModel\Users\**" />
-    <EmbeddedResource Remove="DataModel\Companies\**" />
+
     <EmbeddedResource Remove="DataModel\MainPage\**" />
     <EmbeddedResource Remove="DataModel\Masters\**" />
     <EmbeddedResource Remove="DataModel\Prices\**" />
     <EmbeddedResource Remove="DataModel\Users\**" />
-    <None Remove="DataModel\Companies\**" />
+
     <None Remove="DataModel\MainPage\**" />
     <None Remove="DataModel\Masters\**" />
     <None Remove="DataModel\Prices\**" />

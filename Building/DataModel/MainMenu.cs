@@ -12,6 +12,9 @@ public class MainMenu
     /// <summary> Звернення в тех. підтримку </summary>
     public required SetOfSupportTickets SupportTickets { get; init; }
 #endregion #Support
+#region #Company
+    public required SetOfCompany Companies { get; init; }
+#endregion #Company
 
     public MainMenu()
     {
@@ -19,6 +22,9 @@ public class MainMenu
         {
             // 0 - Вихід додається автоматично
             new (1, "Статті"),
+#region #Company
+            new (3, "Компанії"),
+#endregion #Company
 #region #Support
             new (2, "Технічна підтримка")
 #endregion #Support
@@ -58,6 +64,11 @@ public class MainMenu
                 SupportTickets.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
 #endregion #Support
+#region #Company
+            case 3:
+                Companies.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
+#endregion #Company
         }
         return EWorkWithMenu.QuitMenu;
     }

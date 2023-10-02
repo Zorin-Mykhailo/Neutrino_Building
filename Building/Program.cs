@@ -46,13 +46,45 @@ internal class Program
             }
         };
 #endregion #Support
+#region #Company
+        SetOfCompany companies = new(2, "Компанії")
+        {
+            new(1)
+            {
+                NameOfCompany = "OBID",
+                Owner = "George",
+                Actuality = EActuality.Actual,
+                Description = "Big and greate company",
+                State = ECompanyState.InProgres
+            },
+            new(2)
+            {
+                NameOfCompany = "Stroyka",
+                Owner = "Vasya",
+                Actuality = EActuality.Deprecated,
+                Description = "Bad company",
+                State = ECompanyState.Closed
+            },
+            new(3)
+            {
+                NameOfCompany = "Shittovoz",
+                Owner = "Oleg",
+                Actuality = EActuality.Actual,
+                Description = "We are work with poop",
+                State = ECompanyState.New
+            }
+        };
+#endregion #Company
 
         MainMenu mainMenu = new()
         {
              Articles = articles,
 #region #Support
-             SupportTickets = supportTickets
+             SupportTickets = supportTickets,
 #endregion #Support
+#region #Company
+            Companies = companies
+#endregion #Company
         };
 
         mainMenu.ShowMenu();
