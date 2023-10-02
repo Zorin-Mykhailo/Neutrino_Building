@@ -1,5 +1,6 @@
 ﻿// Program.cs
 
+using Building.DataModel.Master;
 using System.Text;
 
 namespace Building;
@@ -17,7 +18,7 @@ internal class Program
             new (34) { Title = "Стаття 2" }
         };
 
-#region #Support
+        #region #Support
         SetOfSupportTickets supportTickets = new (2, "Технічна підтримка")
         {
             new (1)
@@ -106,19 +107,79 @@ internal class Program
                Type = EType.Service
             }
         };
-#endregion #Prices
+        #endregion #Prices
 
+        SetOfMasters masters = new (4, "Майстри")
+        {
+            new (1)
+            {
+               FirstName = "Anton",
+               LastName = "Anosov",
+               Email = "aan@gmail.com" ,
+               MasterType = EMasterType.PoolMaster
+            },
+            new (2)
+            {
+               FirstName = "Borys",
+               LastName = "Bobrov",
+               Email = "bbo@gmail.com" ,
+               MasterType = EMasterType.Cleaner
+            },
+            new (3)
+            {
+               FirstName = "Clement",
+               LastName = "Citrusenko",
+               Email = "ccu@gmail.com" ,
+               MasterType = EMasterType.Gardener
+            },
+            new (4)
+            {
+               FirstName = "Denis",
+               LastName = "Davydov",
+               Email = "dde@gmail.com" ,
+               MasterType = EMasterType.General
+            },
+            new (5)
+            {
+               FirstName = "Egor",
+               LastName = "Efremov",
+               Email = "eef@gmail.com" ,
+               MasterType = EMasterType.Electrician
+            },
+            new (6)
+            {
+               FirstName = "Gennadiy",
+               LastName = "Goroshovskii",
+               Email = "ggo@gmail.com" ,
+               MasterType = EMasterType.Foreman
+            },
+            new (7)
+            {
+               FirstName = "Faina",
+               LastName = "Fusenko",
+               Email = "ffu@gmail.com" ,
+               MasterType = EMasterType.Repairer
+            },
+            new (8)
+            {
+               FirstName = "Havrylo",
+               LastName = "Holosenko",
+               Email = "hho@gmail.com" ,
+               MasterType = EMasterType.Plumber
+            },
+        };
 
         MainMenu mainMenu = new()
         {
              Articles = articles,
-#region #Support
+        #region #Support
              SupportTickets = supportTickets,
-#endregion #Support
+        #endregion #Support
 
-#region #Prices
+        #region #Prices
              Prices = prices,
-#endregion #Prices
+        #endregion #Prices
+             Masters = masters
         };
 
         mainMenu.ShowMenu();
