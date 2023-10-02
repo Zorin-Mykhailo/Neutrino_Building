@@ -160,6 +160,13 @@ internal class Program
                Email = "ffu@gmail.com" ,
                MasterType = EMasterType.Repairer
             },
+            new (8)
+            {
+               FirstName = "Havrylo",
+               LastName = "Holosenko",
+               Email = "hho@gmail.com" ,
+               MasterType = EMasterType.Plumber
+            },
         };
 
         MainMenu mainMenu = new()

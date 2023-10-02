@@ -15,5 +15,6 @@ public static class ExtEMasterType
         _namesOfEnum.Add(EMasterType.Gardener, "Садівник");
         _namesOfEnum.Add(EMasterType.PoolMaster, "Майстер Басейнів");
         _namesOfEnum.Add(EMasterType.General, "Майстер");
+        _namesOfEnum.Add(EMasterType.Repairer, "Ремонтник");
     }
 }
