@@ -1,5 +1,7 @@
 ﻿// DataModel/MainMenu.cs
 
+using Building.DataModel.Master;
+
 namespace Building;
 
 public class MainMenu
@@ -15,7 +17,9 @@ public class MainMenu
 
 #region #Prices
     public required SetOfPrices Prices { get; init; }
-#endregion #Prices
+    #endregion #Prices
+
+    public required SetOfMasters Masters { get; init; }
 
     public MainMenu()
     {
@@ -31,6 +35,8 @@ public class MainMenu
 #region #Prices
             new (3, "Ціни"),
 #endregion #Prices
+
+            new (4, "Майстри"),
             // new (2, "Ваш пункт меню"), // Додайте ваш пункт меню
         };
 
@@ -72,6 +78,9 @@ public class MainMenu
                 Prices.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
             #endregion #Prices
+            case 4:
+                Masters.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
 
         }
         return EWorkWithMenu.QuitMenu;
