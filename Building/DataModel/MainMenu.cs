@@ -1,5 +1,7 @@
 ﻿// DataModel/MainMenu.cs
 
+using Building.DataModel.Master;
+
 namespace Building;
 
 public class MainMenu
@@ -16,18 +18,29 @@ public class MainMenu
     public required SetOfCompany Companies { get; init; }
 #endregion #Company
 
+#region #Prices
+    public required SetOfPrices Prices { get; init; }
+    #endregion #Prices
+
+    public required SetOfMasters Masters { get; init; }
+
     public MainMenu()
     {
         Menu = new("ГОЛОВНЕ МЕНЮ", ConsoleColor.Green)
         {
             // 0 - Вихід додається автоматично
             new (1, "Статті"),
-#region #Company
-            new (3, "Компанії"),
-#endregion #Company
 #region #Support
-            new (2, "Технічна підтримка")
+            new (2, "Технічна підтримка"),
 #endregion #Support
+
+#region #Prices
+            new (3, "Ціни"),
+#endregion #Prices
+            new (4, "Майстри"),
+#region #Company
+            new (5, "Компанії"),
+#endregion #Compan
             // new (2, "Ваш пункт меню"), // Додайте ваш пункт меню
         };
 
@@ -59,16 +72,24 @@ public class MainMenu
             case 1:
                 Articles.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-#region #Support
+            #region #Support
             case 2:
                 SupportTickets.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-#endregion #Support
-#region #Company
+            #endregion #Support
+            #region #Prices
             case 3:
+                Prices.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
+            #endregion #Prices
+            case 4:
+                Masters.ShowMenu();
+                return EWorkWithMenu.ContinueWork;
+            #region #Company
+            case 5:
                 Companies.ShowMenu();
                 return EWorkWithMenu.ContinueWork;
-#endregion #Company
+            #endregion #Company
         }
         return EWorkWithMenu.QuitMenu;
     }

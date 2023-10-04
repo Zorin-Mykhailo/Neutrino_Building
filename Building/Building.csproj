@@ -11,17 +11,14 @@
    
     <Compile Remove="DataModel\MainPage\**" />
     <Compile Remove="DataModel\Masters\**" />
-    <Compile Remove="DataModel\Prices\**" />
     <Compile Remove="DataModel\Users\**" />
 
     <EmbeddedResource Remove="DataModel\MainPage\**" />
     <EmbeddedResource Remove="DataModel\Masters\**" />
-    <EmbeddedResource Remove="DataModel\Prices\**" />
     <EmbeddedResource Remove="DataModel\Users\**" />
 
     <None Remove="DataModel\MainPage\**" />
     <None Remove="DataModel\Masters\**" />
-    <None Remove="DataModel\Prices\**" />
     <None Remove="DataModel\Users\**" />
   </ItemGroup>
 

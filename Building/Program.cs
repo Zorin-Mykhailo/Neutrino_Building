@@ -1,5 +1,6 @@
 ﻿// Program.cs
 
+using Building.DataModel.Master;
 using System.Text;
 
 namespace Building;
@@ -17,7 +18,7 @@ internal class Program
             new (34) { Title = "Стаття 2" }
         };
 
-#region #Support
+        #region #Support
         SetOfSupportTickets supportTickets = new (2, "Технічна підтримка")
         {
             new (1)
@@ -76,15 +77,140 @@ internal class Program
         };
 #endregion #Company
 
+
+        #region #Prices
+        SetOfPrices prices = new (3, "Ціни")
+        {
+            new (1)
+            {
+               Name = "Мішок цементу",
+               ItemPrice = 168.25m ,
+               Type = EType.Material
+            },
+            new (2)
+            {
+               Name = "Мішок штукатурки",
+               ItemPrice = 126.0m ,
+               Type = EType.Material
+            },
+            new (3)
+            {
+               Name = "Мішок шпаклівки",
+               ItemPrice = 450.0m ,
+               Type = EType.Material
+            },
+            new (4)
+            {
+               Name = "Ларезний рівень",
+               ItemPrice = 2250.0m ,
+               Type = EType.Instrument
+            },
+            new (5)
+            {
+               Name = "Перфоратор",
+               ItemPrice = 3100.0m ,
+               Type = EType.Instrument
+            },
+            new (6)
+            {
+               Name = "Набір викруток",
+               ItemPrice = 899.0m ,
+               Type = EType.Instrument
+            },
+            new (7)
+            {
+               Name = "Ремонт даху будівлі, метр квадратний",
+               ItemPrice = 880.0m ,
+               Type = EType.Service
+            },
+            new (8)
+            {
+               Name = "Автоперевезення, ціна за 100 кг",
+               ItemPrice = 1100.0m ,
+               Type = EType.Service
+            },
+            new (9)
+            {
+               Name = "Консультація електрика",
+               ItemPrice = 500.0m ,
+               Type = EType.Service
+            }
+        };
+        #endregion #Prices
+
+        SetOfMasters masters = new (4, "Майстри")
+        {
+            new (1)
+            {
+               FirstName = "Anton",
+               LastName = "Anosov",
+               Email = "aan@gmail.com" ,
+               MasterType = EMasterType.PoolMaster
+            },
+            new (2)
+            {
+               FirstName = "Borys",
+               LastName = "Bobrov",
+               Email = "bbo@gmail.com" ,
+               MasterType = EMasterType.Cleaner
+            },
+            new (3)
+            {
+               FirstName = "Clement",
+               LastName = "Citrusenko",
+               Email = "ccu@gmail.com" ,
+               MasterType = EMasterType.Gardener
+            },
+            new (4)
+            {
+               FirstName = "Denis",
+               LastName = "Davydov",
+               Email = "dde@gmail.com" ,
+               MasterType = EMasterType.General
+            },
+            new (5)
+            {
+               FirstName = "Egor",
+               LastName = "Efremov",
+               Email = "eef@gmail.com" ,
+               MasterType = EMasterType.Electrician
+            },
+            new (6)
+            {
+               FirstName = "Gennadiy",
+               LastName = "Goroshovskii",
+               Email = "ggo@gmail.com" ,
+               MasterType = EMasterType.Foreman
+            },
+            new (7)
+            {
+               FirstName = "Faina",
+               LastName = "Fusenko",
+               Email = "ffu@gmail.com" ,
+               MasterType = EMasterType.Repairer
+            },
+            new (8)
+            {
+               FirstName = "Havrylo",
+               LastName = "Holosenko",
+               Email = "hho@gmail.com" ,
+               MasterType = EMasterType.Plumber
+            },
+        };
+
         MainMenu mainMenu = new()
         {
              Articles = articles,
-#region #Support
-             SupportTickets = supportTickets,
-#endregion #Support
-#region #Company
+        #region #Company
             Companies = companies
-#endregion #Company
+        #endregion #Company
+        #region #Support
+             SupportTickets = supportTickets,
+        #endregion #Support
+        #region #Prices
+             Prices = prices,
+        #endregion #Prices
+             Masters = masters
         };
 
         mainMenu.ShowMenu();
