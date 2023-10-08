@@ -202,7 +202,7 @@ internal class Program
         {
              Articles = articles,
         #region #Company
-            Companies = companies
+            Companies = companies,
         #endregion #Company
         #region #Support
              SupportTickets = supportTickets,
