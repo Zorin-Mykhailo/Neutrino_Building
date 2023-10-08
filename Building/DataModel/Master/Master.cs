@@ -19,11 +19,45 @@ public class Master : Entity
         CreationTime = creationTime;
     }
 
+    //several error types
     public override String ToString()
-        => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {FirstName} {LastName} -- from {Email} -- {MasterType.AsStr()}";
+    {
+        try
+        {
+            while (true)  return $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {FirstName} {LastName} -- from {Email} -- {MasterType.AsStr()}";
+        }
+        catch (StackOverflowException ex)
+        {
+            return $"Oops! You did too much: {ex}";
+        }
+        catch (Exception ex)
+        {
+            return $"Oops! You will never ever rich this exception :) {ex}";
+        }
 
+    }
+
+    //try catch inside of try catch, one stacktrace is overriden
     public String GetInfo(Int32 experience)
     {
+        try
+        {
+            Console.WriteLine("Trying to get info");
+
+            try
+            {
+                throw new ArgumentNullException("Some incorrect text");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"A custom made error was caughtю \n {ex.StackTrace}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+            throw new Exception($"Some overriden incorrect text \n{e.StackTrace}");
+        }
         return $"I'm a {MasterType} with {experience} of experience.";
     }
 
