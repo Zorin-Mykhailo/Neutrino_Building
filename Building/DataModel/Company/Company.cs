@@ -16,18 +16,18 @@ public class Company : Entity
     public required string NameOfCompany { get; init; }
     public string Description
     {
-        get { return _description; }
-        set { _description = value; }
+        get => _description;
+        set => _description = value;
     }
     public int Id
     {
-        get { return _id; }
-        set { _id = value; }
+        get => _id;
+        set => _id = value;
     }
     public string Owner
     {
-        get { return _owner; }
-        set { _owner = value; }
+        get => _owner;
+        set => _owner = value;
     }
     public Company(int id) : base(id)
     {
