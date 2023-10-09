@@ -7,45 +7,45 @@ using System.Threading.Tasks;
 namespace Building;
 public class Company : Entity
 {
-    private Int32 _id;
-    public const String DirectionInIndustry = "Construction and restoration";
-    private String _description;
-    public readonly String DateOfCreate = DateTime.Now.ToShortDateString();
-    private String _owner;
+    private int _id;
+    public const string DirectionInIndustry = "Construction and restoration";
+    private string _description;
+    public readonly string DateOfCreate = DateTime.Now.ToShortDateString();
+    private string _owner;
     public ECompanyState State { get; set; } = ECompanyState.New;
-    public required String NameOfCompany { get; init; }
-    public String Description
+    public required string NameOfCompany { get; init; }
+    public string Description
     {
         get { return _description; }
         set { _description = value; }
     }
-    public Int32 Id
+    public int Id
     {
         get { return _id; }
         set { _id = value; }
     }
-    public String Owner
+    public string Owner
     {
         get { return _owner; }
         set { _owner = value; }
     }
-    public Company(Int32 id) : base(id)
+    public Company(int id) : base(id)
     {
         Description = "We are greate building company";
     }
-    public Company(Int32 id, String description) : base(id)
+    public Company(int id, string description) : base(id)
     {
         Description = description;
     }
-    public String GetTechInfo()
+    public string GetTechInfo()
     {
         return $"ID:{Id}, {NameOfCompany}\n{Description}\n{DateOfCreate}";
     }
-    public String GetTechInfo(String customDescription)
+    public string GetTechInfo(string customDescription)
     {
         return $"ID:{Id}, {NameOfCompany}\n{customDescription}\n{DateOfCreate}";
     }
-    public override String ToString()
+    public override string ToString()
         => $"{base.ToString()} 📝 {DateOfCreate:yyyy.MM.dd(ddd) HH:mm} -- {NameOfCompany} -- from {Owner} -- {State.AsStr()}";
 }
 #endregion #Company

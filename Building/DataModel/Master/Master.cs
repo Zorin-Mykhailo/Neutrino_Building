@@ -2,25 +2,25 @@
 public class Master : Entity
 {
     public DateTime CreationTime { get; private set; }
-    public required String FirstName { get; init; }
-    public required String LastName { get; init; }
-    public required String Email { get; init; }
+    public required string FirstName { get; init; }
+    public required string LastName { get; init; }
+    public required string Email { get; init; }
     public EMasterType MasterType { get; set; } = EMasterType.General;
-    public const String Phrase = "I can fix anything!";
-    public readonly Int64 PhoneNumber;
+    public const string Phrase = "I can fix anything!";
+    public readonly long PhoneNumber;
 
-    public Master(Int32 id) : base(id)
+    public Master(int id) : base(id)
     {
         CreationTime = DateTime.Now;
     }
 
-    public Master(Int32 id, DateTime creationTime) : base(id)
+    public Master(int id, DateTime creationTime) : base(id)
     {
         CreationTime = creationTime;
     }
 
     //several error types
-    public override String ToString()
+    public override string ToString()
     {
         try
         {
@@ -38,7 +38,7 @@ public class Master : Entity
     }
 
     //try catch inside of try catch, one stacktrace is overriden
-    public String GetInfo(Int32 experience)
+    public string GetInfo(int experience)
     {
         try
         {
@@ -61,7 +61,7 @@ public class Master : Entity
         return $"I'm a {MasterType} with {experience} of experience.";
     }
 
-    public String GetInfo(Int32 experience, Int32 age)
+    public string GetInfo(int experience, int age)
     {
         return $"I'm a {age}-year old {MasterType} with {experience} of experience.";
     }

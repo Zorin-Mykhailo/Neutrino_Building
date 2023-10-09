@@ -24,13 +24,13 @@ file_header_template = unset
 
 # this. and Me. preferences
 dotnet_style_qualification_for_event = false:warning
-dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_field = false
 dotnet_style_qualification_for_method = false:warning
 dotnet_style_qualification_for_property = false:warning
 
 # Language keywords vs BCL types preferences
-dotnet_style_predefined_type_for_locals_parameters_members = false:warning
-dotnet_style_predefined_type_for_member_access = false:warning
+dotnet_style_predefined_type_for_locals_parameters_members = true:warning
+dotnet_style_predefined_type_for_member_access = true:warning
 
 # Parentheses preferences
 dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity
@@ -204,10 +204,6 @@ dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = warning
 dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
 dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
 
-dotnet_naming_rule.enum_should_be_begins_with_e.severity = warning
-dotnet_naming_rule.enum_should_be_begins_with_e.symbols = enum
-dotnet_naming_rule.enum_should_be_begins_with_e.style = begins_with_e
-
 dotnet_naming_rule.private_or_internal_field_should_be_begins_with___and_camel_casee.severity = warning
 dotnet_naming_rule.private_or_internal_field_should_be_begins_with___and_camel_casee.symbols = private_or_internal_field
 dotnet_naming_rule.private_or_internal_field_should_be_begins_with___and_camel_casee.style = begins_with___and_camel_casee
@@ -217,10 +213,6 @@ dotnet_naming_rule.private_or_internal_field_should_be_begins_with___and_camel_c
 dotnet_naming_symbols.interface.applicable_kinds = interface
 dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.interface.required_modifiers = 
-
-dotnet_naming_symbols.enum.applicable_kinds = enum
-dotnet_naming_symbols.enum.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
-dotnet_naming_symbols.enum.required_modifiers = 
 
 dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
 dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
@@ -245,11 +237,6 @@ dotnet_naming_style.begins_with_i.required_prefix = I
 dotnet_naming_style.begins_with_i.required_suffix = 
 dotnet_naming_style.begins_with_i.word_separator = 
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
-
-dotnet_naming_style.begins_with_e.required_prefix = E
-dotnet_naming_style.begins_with_e.required_suffix = 
-dotnet_naming_style.begins_with_e.word_separator = 
-dotnet_naming_style.begins_with_e.capitalization = pascal_case
 
 dotnet_naming_style.begins_with___and_camel_casee.required_prefix = _
 dotnet_naming_style.begins_with___and_camel_casee.required_suffix = 

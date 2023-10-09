@@ -63,7 +63,7 @@ public class MainMenu
         } while(workWithMenu == EWorkWithMenu.ContinueWork);
     }
 
-    public EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    public EWorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {

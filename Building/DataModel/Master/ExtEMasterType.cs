@@ -1,13 +1,13 @@
 ﻿namespace Building.DataModel.Master;
 public static class ExtEMasterType
 {
-    public static String AsStr(this EMasterType enumValue) => _namesOfEnum[enumValue];
+    public static string AsStr(this EMasterType enumValue) => _namesOfEnum[enumValue];
 
-    private static readonly Dictionary<EMasterType, String> _namesOfEnum;
+    private static readonly Dictionary<EMasterType, string> _namesOfEnum;
 
     static ExtEMasterType()
     {
-        _namesOfEnum = new Dictionary<EMasterType, String>();
+        _namesOfEnum = new Dictionary<EMasterType, string>();
         _namesOfEnum.Add(EMasterType.Cleaner, "Прибиральник");
         _namesOfEnum.Add(EMasterType.Electrician, "Електрик");
         _namesOfEnum.Add(EMasterType.Foreman, "Прораб");

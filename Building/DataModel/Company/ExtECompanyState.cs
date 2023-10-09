@@ -8,18 +8,18 @@ using E = Building.ECompanyState;
 namespace Building;
 public static class ExtECompanyState
 {
-    public static String AsStr(this E enumValue) => _namesOfEnum[enumValue];
+    public static string AsStr(this E enumValue) => _namesOfEnum[enumValue];
 
-    private static readonly Dictionary<E, String> _namesOfEnum;
+    private static readonly Dictionary<E, string> _namesOfEnum;
 
     static ExtECompanyState()
     {
-        _namesOfEnum = new Dictionary<E, String>();
+        _namesOfEnum = new Dictionary<E, string>();
         Registration(E.New, "Нова Компанія");
         Registration(E.InProgres, "Існуюча Компанія");
         Registration(E.Closed, "Закрита Компанія");
     }
 
-    private static void Registration(E enumValue, String name) => _namesOfEnum.Add(enumValue, name);
+    private static void Registration(E enumValue, string name) => _namesOfEnum.Add(enumValue, name);
 }
 #endregion #Company

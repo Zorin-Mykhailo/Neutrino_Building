@@ -4,7 +4,7 @@ public class SetOfArticles : EntitySet<Article>
 {
     
 
-    public SetOfArticles(Int32 id, String name) : base(id, name)
+    public SetOfArticles(int id, string name) : base(id, name)
     {
         Menu = new("СТАТТІ", ConsoleColor.Yellow)
         {
@@ -15,7 +15,7 @@ public class SetOfArticles : EntitySet<Article>
 
     
 
-    protected override EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override EWorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Building;
 public class SetOfCompany : EntitySet<Company>
 {
-    public SetOfCompany(Int32 id, String name) : base(id, name)
+    public SetOfCompany(int id, string name) : base(id, name)
     {
         Menu = new("Компанії", ConsoleColor.DarkMagenta)
         {
@@ -20,7 +20,7 @@ public class SetOfCompany : EntitySet<Company>
         };
     }
 
-    protected override EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override EWorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
