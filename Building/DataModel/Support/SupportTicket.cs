@@ -13,26 +13,26 @@ public class SupportTicket : Entity
     public SupportTicketState State { get; set; } = SupportTicketState.New;
 
     /// <summary> Стисла назва звернення </summary>
-    public required String Title { get; init; }
+    public required string Title { get; init; }
 
     /// <summary> Email автора </summary>
-    public required String AutorEmail { get; init; }
+    public required string AutorEmail { get; init; }
 
     /// <summary> Текст звернення </summary>
-    public required String Text { get; init; }
+    public required string Text { get; init; }
 
     /// <summary> Конструктор, що наслідуєься від базового </summary>
     /// <param name="id"></param>
-    public SupportTicket(Int32 id, DateTime creationTime) : base(id)
+    public SupportTicket(int id, DateTime creationTime) : base(id)
         => CreationTime = creationTime;
 
     /// <summary> Перевантажений конструктор в якому автоматично заповнюється дата створення </summary>
     /// <param name="id"></param>
-    public SupportTicket(Int32 id) : base(id)
+    public SupportTicket(int id) : base(id)
         => CreationTime = DateTime.Now;
 
     /// <summary> Перевизначимо необхідним чином приведення до стрічки </summary>
-    public override String ToString()
+    public override string ToString()
         => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {Title} -- from {AutorEmail} -- {State.AsStr()}";
 }
 

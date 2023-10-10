@@ -7,7 +7,7 @@ namespace Building;
 
 internal class Program
 {
-    static void Main(String[] args)
+    static void Main(string[] args)
     {
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;

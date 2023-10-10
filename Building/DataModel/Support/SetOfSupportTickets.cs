@@ -8,7 +8,7 @@ public class SetOfSupportTickets : EntitySet<SupportTicket>
     /// <summary> В конструкторі опишемо пункти меню, що будуть використовуватись в розділі Тех. підтримка </summary>
     /// <param name="id"> Id </param>
     /// <param name="name"> Назва (набору звернень) </param>
-    public SetOfSupportTickets(Int32 id, String name) : base(id, name)
+    public SetOfSupportTickets(int id, string name) : base(id, name)
     {
         // Для вашого меню можна задати власний колір, напририклад червоний
         Menu = new("Звернення в тех. підтримку", ConsoleColor.Red)
@@ -22,7 +22,7 @@ public class SetOfSupportTickets : EntitySet<SupportTicket>
         };
     }
 
-    protected override WorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {

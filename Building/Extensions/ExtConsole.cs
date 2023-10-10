@@ -2,7 +2,7 @@
 
 public static class ExtConsole
 {
-    public static void ShowError(String errorText)
+    public static void ShowError(string errorText)
     {
         ConsoleColor prevForeColor = Console.ForegroundColor;
         ConsoleColor prevBackColor = Console.BackgroundColor;
@@ -23,7 +23,7 @@ public static class ExtConsole
         Console.BackgroundColor = prevBackColor;
     }
 
-    public static String? TakeInput(String inputPrompt)
+    public static string? TakeInput(string inputPrompt)
     {
         ConsoleColor prevForeColor = Console.ForegroundColor;
         ConsoleColor prevBackColor = Console.BackgroundColor;
@@ -34,7 +34,7 @@ public static class ExtConsole
 
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.BackgroundColor = ConsoleColor.Black;
-        String? consoleInput = Console.ReadLine();
+        string? consoleInput = Console.ReadLine();
 
         Console.ForegroundColor = prevForeColor;
         Console.BackgroundColor = prevBackColor;
@@ -42,25 +42,25 @@ public static class ExtConsole
         return consoleInput;
     }
 
-    public static Int32? TakeInt32(String inputPrompt)
+    public static int? TakeInt32(string inputPrompt)
     {
-        String? consoleInput = TakeInput(inputPrompt);
-        return String.IsNullOrWhiteSpace(consoleInput) 
+        string? consoleInput = TakeInput(inputPrompt);
+        return string.IsNullOrWhiteSpace(consoleInput) 
             ? null 
-            : !Int32.TryParse(consoleInput, out Int32 userChoice) 
+            : !int.TryParse(consoleInput, out int userChoice) 
                 ? throw new ArgumentException("Значення не є числом") : userChoice;
     }
 
-    public static Int32 AsNotNull(this Int32? value)
+    public static int AsNotNull(this int? value)
     {
         return value == null ? throw new ArgumentException("Значення не повинно бути пустим") : value.Value;
     }
 
-    public static Int32 BelongsToSet(this Int32 value, IEnumerable<Int32> set)
+    public static int BelongsToSet(this int value, IEnumerable<int> set)
     {
-        HashSet<Int32> uniqueValues = new (set);
+        HashSet<int> uniqueValues = new (set);
         return !uniqueValues.Contains(value)
-            ? throw new ArgumentException($"Число повинно бути одним із: {{{String.Join(", ", uniqueValues.Order())}}}")
+            ? throw new ArgumentException($"Число повинно бути одним із: {{{string.Join(", ", uniqueValues.Order())}}}")
             : value;
     }
 }

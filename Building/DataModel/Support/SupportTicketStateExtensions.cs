@@ -12,7 +12,7 @@ public static class SupportTicketStateExtensions
     
     static SupportTicketStateExtensions()
     {
-        _namesOfEnum = new Dictionary<E, String>();
+        _namesOfEnum = new Dictionary<E, string>();
         Registration(E.New, "Нове звернення");
         Registration(E.InProgres, "В роботі");
         Registration(E.Closed, "Завершено");

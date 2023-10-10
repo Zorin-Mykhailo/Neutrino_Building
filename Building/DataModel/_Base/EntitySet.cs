@@ -3,13 +3,13 @@
 namespace Building;
 public class EntitySet<T> : IEnumerable<T> where T : Entity
 {
-    public Int32 Id { get; init; }
+    public int Id { get; init; }
 
-    public String Name { get; init; }
+    public string Name { get; init; }
 
     protected Menu? Menu { get; set; }
 
-    public EntitySet(Int32 id, String name)
+    public EntitySet(int id, string name)
     {
         Id = id;
         Name = name;
@@ -34,38 +34,38 @@ public class EntitySet<T> : IEnumerable<T> where T : Entity
         } while(workWithMenu == WorkWithMenu.ContinueWork);
     }
 
-    protected virtual WorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected virtual WorkWithMenu HandleMenuChoice(int menuItemNumber)
         => Menu == null || menuItemNumber == 0 || !Menu.ContainsKey(menuItemNumber) ? WorkWithMenu.QuitMenu : WorkWithMenu.ContinueWork;
 
-    private Dictionary<Int32, T> _items = new();
+    private Dictionary<int, T> _items = new();
 
-    public T this[Int32 id]
+    public T this[int id]
     {
         get => _items[id];
         set => _items[id] = value;
     }
 
-    public Int32 Count => _items.Count;    
+    public int Count => _items.Count;    
     
     public void Add(T item) => _items.Add(item.Id, item);
     
     public void Clear() => _items.Clear();
     
-    public Boolean Contains(T item) => _items.ContainsKey(item.Id);
+    public bool Contains(T item) => _items.ContainsKey(item.Id);
     
-    public Boolean Remove(T item) => _items.ContainsKey(item.Id) && _items.Remove(item.Id);
+    public bool Remove(T item) => _items.ContainsKey(item.Id) && _items.Remove(item.Id);
 
-    public Boolean Remove(Int32 itemId) => _items.ContainsKey(itemId) && _items.Remove(itemId);
+    public bool Remove(int itemId) => _items.ContainsKey(itemId) && _items.Remove(itemId);
 
     public IEnumerator<T> GetEnumerator() => _items.Values.GetEnumerator();
     
     IEnumerator IEnumerable.GetEnumerator() => _items.Values.GetEnumerator();
 
-    public override String ToString() => $" {Id, 4} | {Name}";
+    public override string ToString() => $" {Id, 4} | {Name}";
 
-    public virtual String ToEntitiesView(String header)
+    public virtual string ToEntitiesView(string header)
         => ToEntitiesView(header, _items.Values);
 
-    public virtual String ToEntitiesView(String header, IEnumerable<T> entities)
-        => header + (String.IsNullOrEmpty(header) ? String.Empty : "\n") +  String.Join("\n", entities);
+    public virtual string ToEntitiesView(string header, IEnumerable<T> entities)
+        => header + (string.IsNullOrEmpty(header) ? string.Empty : "\n") +  string.Join("\n", entities);
 }
