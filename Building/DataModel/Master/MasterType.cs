@@ -1,5 +1,5 @@
 ﻿namespace Building.DataModel.Master;
-public enum EMasterType
+public enum MasterType
 {
     Plumber,
     Electrician,

@@ -4,15 +4,15 @@ namespace Building;
 
 public class Menu : IEnumerable<MenuItem>
 {
-    public String Title { get; private set; }
+    public string Title { get; private set; }
 
     public ConsoleColor Color { get; private set; }
 
-    private Dictionary<Int32, MenuItem> _items = new();
+    private Dictionary<int, MenuItem> _items = new();
 
-    public Boolean ContainsKey(Int32 key) => _items.ContainsKey(key);
+    public bool ContainsKey(int key) => _items.ContainsKey(key);
 
-    public Menu(String title, ConsoleColor color = ConsoleColor.Blue)
+    public Menu(string title, ConsoleColor color = ConsoleColor.Blue)
     {
         Title = title;
         Color = color;
@@ -26,15 +26,15 @@ public class Menu : IEnumerable<MenuItem>
 
     IEnumerator IEnumerable.GetEnumerator() => _items.Values.GetEnumerator();
 
-    private String GetMenuView()
+    private string GetMenuView()
     {
-        const Int32 idLen = 3;
-        String title = $" {Title} ";
-        Int32 maxTitleLen = Math.Max(_items.Values.Select(e => e.Title.Length).Max(), title.Length);
-        String mnu =
-            $" ╭─{new String('─', idLen)}─┬─{title.PadRight(maxTitleLen, '─')}─╮\n" +
-            String.Join("\n", _items.Values.OrderBy(e => e.Id).Select(e => $" │ {e.Id,idLen} │ {e.Title.PadRight(maxTitleLen)} │")) +
-            $"\n ╰─{new String('─', idLen)}─┴─{new String('─', maxTitleLen)}─╯";
+        const int idLen = 3;
+        string title = $" {Title} ";
+        int maxTitleLen = Math.Max(_items.Values.Select(e => e.Title.Length).Max(), title.Length);
+        string mnu =
+            $" ╭─{new string('─', idLen)}─┬─{title.PadRight(maxTitleLen, '─')}─╮\n" +
+            string.Join("\n", _items.Values.OrderBy(e => e.Id).Select(e => $" │ {e.Id,idLen} │ {e.Title.PadRight(maxTitleLen)} │")) +
+            $"\n ╰─{new string('─', idLen)}─┴─{new string('─', maxTitleLen)}─╯";
         return mnu;
     }
 
@@ -48,7 +48,7 @@ public class Menu : IEnumerable<MenuItem>
         Console.ForegroundColor = prevForeColor;
     }
 
-    public Int32 ShowMenu()
+    public int ShowMenu()
     {
         ShowMenuView();
         return ExtConsole.TakeInt32("Обраний пункт меню")

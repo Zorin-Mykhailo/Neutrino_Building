@@ -5,7 +5,7 @@ public class Master : Entity
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
     public required string Email { get; init; }
-    public EMasterType MasterType { get; set; } = EMasterType.General;
+    public MasterType MasterType { get; set; } = MasterType.General;
     public const string Phrase = "I can fix anything!";
     public readonly long PhoneNumber;
 

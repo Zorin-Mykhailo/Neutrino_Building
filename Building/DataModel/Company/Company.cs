@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-#region #Company
+﻿#region #Company
 namespace Building;
 public class Company : Entity
 {
-    private int _id;
     public const string DirectionInIndustry = "Construction and restoration";
-    private string _description;
+
+    private int _id;
+    private string _description = string.Empty; 
+    private string _owner = string.Empty;
+    
     public readonly string DateOfCreate = DateTime.Now.ToShortDateString();
-    private string _owner;
-    public ECompanyState State { get; set; } = ECompanyState.New;
+    
+    public CompanyState State { get; set; } = CompanyState.New;
+    
     public required string NameOfCompany { get; init; }
+    
     public string Description
     {
         get => _description;
         set => _description = value;
     }
-    public int Id
+    public int Id // Гордій, ця властивість приховує Id базового класу Entity!
     {
         get => _id;
         set => _id = value;

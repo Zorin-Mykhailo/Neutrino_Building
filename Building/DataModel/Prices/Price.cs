@@ -11,7 +11,7 @@ public class Price : Entity
     public required string Name { get; set; }
     public required decimal ItemPrice { get; set; }
     public DateTime Available { get; private set; }
-    public EType Type { get; set; }
+    public PricesType Type { get; set; }
 
     public Price(Int32 id) : base(id)
     { 

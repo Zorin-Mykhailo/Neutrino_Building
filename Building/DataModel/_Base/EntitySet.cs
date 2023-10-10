@@ -19,7 +19,7 @@ public class EntitySet<T> : IEnumerable<T> where T : Entity
     public void ShowMenu()
     {
         if(Menu == null) return;
-        EWorkWithMenu workWithMenu = EWorkWithMenu.QuitMenu;
+        WorkWithMenu workWithMenu = WorkWithMenu.QuitMenu;
         do
         {
             try
@@ -31,11 +31,11 @@ public class EntitySet<T> : IEnumerable<T> where T : Entity
                 ExtConsole.ShowError(ex.Message);
             }
 
-        } while(workWithMenu == EWorkWithMenu.ContinueWork);
+        } while(workWithMenu == WorkWithMenu.ContinueWork);
     }
 
-    protected virtual EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
-        => Menu == null || menuItemNumber == 0 || !Menu.ContainsKey(menuItemNumber) ? EWorkWithMenu.QuitMenu : EWorkWithMenu.ContinueWork;
+    protected virtual WorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+        => Menu == null || menuItemNumber == 0 || !Menu.ContainsKey(menuItemNumber) ? WorkWithMenu.QuitMenu : WorkWithMenu.ContinueWork;
 
     private Dictionary<Int32, T> _items = new();
 

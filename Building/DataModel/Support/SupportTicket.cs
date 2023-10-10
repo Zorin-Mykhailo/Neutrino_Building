@@ -10,7 +10,7 @@ public class SupportTicket : Entity
     public DateTime CreationTime { get; private set; }
 
     /// <summary> Стан звернення </summary>
-    public ESupportTicketState State { get; set; } = ESupportTicketState.New;
+    public SupportTicketState State { get; set; } = SupportTicketState.New;
 
     /// <summary> Стисла назва звернення </summary>
     public required String Title { get; init; }

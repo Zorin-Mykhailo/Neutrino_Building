@@ -2,27 +2,27 @@
 
 public class Entity : IEquatable<Entity?>
 {
-    public Int32 Id { get; init; }
+    public int Id { get; init; }
 
-    public EActuality Actuality { get; init; } = EActuality.Actual;
+    public Actuality Actuality { get; init; } = Actuality.Actual;
 
-    public Entity(Int32 id)
+    public Entity(int id)
     {
         Id = id;
     }
 
 
-    public override Boolean Equals(Object? obj) => Equals(obj as Entity);
+    public override bool Equals(object? obj) => Equals(obj as Entity);
 
-    public Boolean Equals(Entity? other) => other is not null && Id == other.Id;
+    public bool Equals(Entity? other) => other is not null && Id == other.Id;
     
-    public override Int32 GetHashCode() => HashCode.Combine(Id);
+    public override int GetHashCode() => HashCode.Combine(Id);
 
-    public static Boolean operator ==(Entity? left, Entity? right) => left is not null && right is not null && left.Id == right.Id;
+    public static bool operator ==(Entity? left, Entity? right) => left is not null && right is not null && left.Id == right.Id;
 
-    public static Boolean operator !=(Entity? left, Entity? right) => !(left == right);
+    public static bool operator !=(Entity? left, Entity? right) => !(left == right);
 
-    public override String ToString() => $"[{(Actuality == EActuality.Actual ? "✔️" : "⛔")} {Id,-6}]";
+    public override string ToString() => $"[{(Actuality == Actuality.Actual ? "✔️" : "⛔")} {Id,-6}]";
 
-    public virtual String ToEntityView() => $"Entity {ToString()}";
+    public virtual string ToEntityView() => $"Entity {ToString()}";
 }
