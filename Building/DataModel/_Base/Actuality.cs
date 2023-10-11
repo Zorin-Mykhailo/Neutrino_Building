@@ -1,7 +1,7 @@
 ﻿namespace Building;
 
 /// <summary> Актуальність </summary>
-public enum EActuality
+public enum Actuality
 {
     /// <summary> Застаріло </summary>
     Deprecated = 0,

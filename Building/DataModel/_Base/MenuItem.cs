@@ -1,3 +1,3 @@
 ﻿namespace Building;
 
-public record MenuItem(Int32 Id, String Title) { }
+public record MenuItem(int Id, string Title) { }

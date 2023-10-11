@@ -7,14 +7,14 @@ namespace Building;
 
 internal class Program
 {
-    static void Main(String[] args)
+    static void Main(string[] args)
     {
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;
 
         SetOfArticles articles = new(1, "Статті") 
         {
-            new (1) { Title = "Стаття 1", Actuality = EActuality.Deprecated },
+            new (1) { Title = "Стаття 1", Actuality = Actuality.Deprecated },
             new (34) { Title = "Стаття 2" }
         };
 
@@ -24,26 +24,26 @@ internal class Program
             new (1)
             {
                 Title = "Не працює мишка",
-                Actuality = EActuality.Actual,
+                Actuality = Actuality.Actual,
                 AutorEmail = "v.pupkin@mail.com",
                 Text = "Перестала працювати мишка. Можливо ...", 
-                State = ESupportTicketState.New                
+                State = SupportTicketState.New                
             },
             new (2)
             {
                 Title = "Збій роботи програми MyApp",
-                Actuality = EActuality.Actual,
+                Actuality = Actuality.Actual,
                 AutorEmail = "m.romaskina@mail.com",
                 Text = "Мій додаток перестав працювати в зв'язку із ...",
-                State = ESupportTicketState.InProgres
+                State = SupportTicketState.InProgres
             },
             new (3)
             {
                 Title = "Не коректна робота API",
-                Actuality = EActuality.Deprecated,
+                Actuality = Actuality.Deprecated,
                 AutorEmail = "r.ivanov@mail.com",
                 Text = "Мій додаток перестав працювати в зв'язку із змінами у вашому API, що були...",
-                State = ESupportTicketState.Closed
+                State = SupportTicketState.Closed
             }
         };
 #endregion #Support
@@ -54,25 +54,25 @@ internal class Program
             {
                 NameOfCompany = "OBID",
                 Owner = "George",
-                Actuality = EActuality.Actual,
+                Actuality = Actuality.Actual,
                 Description = "Big and greate company",
-                State = ECompanyState.InProgres
+                State = CompanyState.InProgres
             },
             new(2)
             {
                 NameOfCompany = "Stroyka",
                 Owner = "Vasya",
-                Actuality = EActuality.Deprecated,
+                Actuality = Actuality.Deprecated,
                 Description = "Bad company",
-                State = ECompanyState.Closed
+                State = CompanyState.Closed
             },
             new(3)
             {
                 NameOfCompany = "Shittovoz",
                 Owner = "Oleg",
-                Actuality = EActuality.Actual,
+                Actuality = Actuality.Actual,
                 Description = "We are work with poop",
-                State = ECompanyState.New
+                State = CompanyState.New
             }
         };
 #endregion #Company
@@ -85,55 +85,55 @@ internal class Program
             {
                Name = "Мішок цементу",
                ItemPrice = 168.25m ,
-               Type = EType.Material
+               Type = PricesType.Material
             },
             new (2)
             {
                Name = "Мішок штукатурки",
                ItemPrice = 126.0m ,
-               Type = EType.Material
+               Type = PricesType.Material
             },
             new (3)
             {
                Name = "Мішок шпаклівки",
                ItemPrice = 450.0m ,
-               Type = EType.Material
+               Type = PricesType.Material
             },
             new (4)
             {
                Name = "Ларезний рівень",
                ItemPrice = 2250.0m ,
-               Type = EType.Instrument
+               Type = PricesType.Instrument
             },
             new (5)
             {
                Name = "Перфоратор",
                ItemPrice = 3100.0m ,
-               Type = EType.Instrument
+               Type = PricesType.Instrument
             },
             new (6)
             {
                Name = "Набір викруток",
                ItemPrice = 899.0m ,
-               Type = EType.Instrument
+               Type = PricesType.Instrument
             },
             new (7)
             {
                Name = "Ремонт даху будівлі, метр квадратний",
                ItemPrice = 880.0m ,
-               Type = EType.Service
+               Type = PricesType.Service
             },
             new (8)
             {
                Name = "Автоперевезення, ціна за 100 кг",
                ItemPrice = 1100.0m ,
-               Type = EType.Service
+               Type = PricesType.Service
             },
             new (9)
             {
                Name = "Консультація електрика",
                ItemPrice = 500.0m ,
-               Type = EType.Service
+               Type = PricesType.Service
             }
         };
         #endregion #Prices
@@ -145,56 +145,56 @@ internal class Program
                FirstName = "Anton",
                LastName = "Anosov",
                Email = "aan@gmail.com" ,
-               MasterType = EMasterType.PoolMaster
+               MasterType = MasterType.PoolMaster
             },
             new (2)
             {
                FirstName = "Borys",
                LastName = "Bobrov",
                Email = "bbo@gmail.com" ,
-               MasterType = EMasterType.Cleaner
+               MasterType = MasterType.Cleaner
             },
             new (3)
             {
                FirstName = "Clement",
                LastName = "Citrusenko",
                Email = "ccu@gmail.com" ,
-               MasterType = EMasterType.Gardener
+               MasterType = MasterType.Gardener
             },
             new (4)
             {
                FirstName = "Denis",
                LastName = "Davydov",
                Email = "dde@gmail.com" ,
-               MasterType = EMasterType.General
+               MasterType = MasterType.General
             },
             new (5)
             {
                FirstName = "Egor",
                LastName = "Efremov",
                Email = "eef@gmail.com" ,
-               MasterType = EMasterType.Electrician
+               MasterType = MasterType.Electrician
             },
             new (6)
             {
                FirstName = "Gennadiy",
                LastName = "Goroshovskii",
                Email = "ggo@gmail.com" ,
-               MasterType = EMasterType.Foreman
+               MasterType = MasterType.Foreman
             },
             new (7)
             {
                FirstName = "Faina",
                LastName = "Fusenko",
                Email = "ffu@gmail.com" ,
-               MasterType = EMasterType.Repairer
+               MasterType = MasterType.Repairer
             },
             new (8)
             {
                FirstName = "Havrylo",
                LastName = "Holosenko",
                Email = "hho@gmail.com" ,
-               MasterType = EMasterType.Plumber
+               MasterType = MasterType.Plumber
             },
         };
 

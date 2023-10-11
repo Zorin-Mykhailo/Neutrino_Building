@@ -1,5 +1,5 @@
 ﻿namespace Building;
-public enum EWorkWithMenu
+public enum WorkWithMenu
 {
     QuitMenu = 0,
     ContinueWork = 1,

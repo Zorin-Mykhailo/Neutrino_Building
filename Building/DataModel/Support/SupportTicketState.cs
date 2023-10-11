@@ -1,10 +1,10 @@
-﻿// DataModel/Support/ESupportTicketState.cs
+﻿// DataModel/Support/SupportTicketState.cs
 
 #region #Support
 namespace Building;
 
 /// <summary> Стан звернення в технічну службу </summary>
-public enum ESupportTicketState
+public enum SupportTicketState
 {
     /// <summary> Нове </summary>
     New,

@@ -8,7 +8,7 @@ namespace Building;
 public class SetOfPrices : EntitySet<Price>
 {
 
-    public SetOfPrices(Int32 id, String name) : base(id, name)
+    public SetOfPrices(int id, string name) : base(id, name)
     {
         Menu = new("Перелік цін на :", ConsoleColor.Red)
         {
@@ -18,24 +18,24 @@ public class SetOfPrices : EntitySet<Price>
         };
     }
 
-    protected override EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
             case 0:
-                return EWorkWithMenu.QuitMenu;
+                return WorkWithMenu.QuitMenu;
 
             case 1:
-                this.Where(e => e.Type == EType.Material).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.Type == PricesType.Material).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 2:
-                this.Where(e => e.Type == EType.Instrument).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.Type == PricesType.Instrument).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 3:
-                this.Where(e => e.Type == EType.Service).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork; 
+                this.Where(e => e.Type == PricesType.Service).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork; 
         }
         return base.HandleMenuChoice(menuItemNumber);
     }

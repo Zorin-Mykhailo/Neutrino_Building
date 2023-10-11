@@ -8,7 +8,7 @@ public class SetOfSupportTickets : EntitySet<SupportTicket>
     /// <summary> В конструкторі опишемо пункти меню, що будуть використовуватись в розділі Тех. підтримка </summary>
     /// <param name="id"> Id </param>
     /// <param name="name"> Назва (набору звернень) </param>
-    public SetOfSupportTickets(Int32 id, String name) : base(id, name)
+    public SetOfSupportTickets(int id, string name) : base(id, name)
     {
         // Для вашого меню можна задати власний колір, напририклад червоний
         Menu = new("Звернення в тех. підтримку", ConsoleColor.Red)
@@ -22,36 +22,36 @@ public class SetOfSupportTickets : EntitySet<SupportTicket>
         };
     }
 
-    protected override EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
             case 0:
-                return EWorkWithMenu.QuitMenu;
+                return WorkWithMenu.QuitMenu;
 
             case 1:
                 this.ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
 
             case 2:
-                this.Where(e => e.Actuality == EActuality.Actual).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.Actuality == Actuality.Actual).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 3:
-                this.Where(e => e.Actuality == EActuality.Deprecated).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.Actuality == Actuality.Deprecated).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 4:
-                this.Where(e => e.State == ESupportTicketState.New).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.State == SupportTicketState.New).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 5:
-                this.Where(e => e.State == ESupportTicketState.InProgres).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.State == SupportTicketState.InProgres).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
 
             case 6:
-                this.Where(e => e.State == ESupportTicketState.Closed).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.State == SupportTicketState.Closed).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
         }
         return base.HandleMenuChoice(menuItemNumber);
     }

@@ -4,7 +4,7 @@ public class SetOfArticles : EntitySet<Article>
 {
     
 
-    public SetOfArticles(Int32 id, String name) : base(id, name)
+    public SetOfArticles(int id, string name) : base(id, name)
     {
         Menu = new("СТАТТІ", ConsoleColor.Yellow)
         {
@@ -15,20 +15,20 @@ public class SetOfArticles : EntitySet<Article>
 
     
 
-    protected override EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
             case 0:
-                return EWorkWithMenu.QuitMenu;
+                return WorkWithMenu.QuitMenu;
 
             case 1:
                 this.ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
 
             case 2:
-                this.Where(e => e.Actuality == EActuality.Actual).ForEach(e => Console.WriteLine(e));
-                return EWorkWithMenu.ContinueWork;
+                this.Where(e => e.Actuality == Actuality.Actual).ForEach(e => Console.WriteLine(e));
+                return WorkWithMenu.ContinueWork;
         }
         return base.HandleMenuChoice(menuItemNumber);
     }

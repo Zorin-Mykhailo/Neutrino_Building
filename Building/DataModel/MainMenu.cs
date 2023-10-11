@@ -48,7 +48,7 @@ public class MainMenu
 
     public void ShowMenu()
     {
-        EWorkWithMenu workWithMenu = EWorkWithMenu.QuitMenu;
+        WorkWithMenu workWithMenu = WorkWithMenu.QuitMenu;
         do
         {
             try
@@ -60,37 +60,37 @@ public class MainMenu
                 ExtConsole.ShowError(ex.Message);
             }
 
-        } while(workWithMenu == EWorkWithMenu.ContinueWork);
+        } while(workWithMenu == WorkWithMenu.ContinueWork);
     }
 
-    public EWorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    public WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
             case 0:
-                return EWorkWithMenu.QuitMenu;
+                return WorkWithMenu.QuitMenu;
             case 1:
                 Articles.ShowMenu();
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
             #region #Support
             case 2:
                 SupportTickets.ShowMenu();
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
             #endregion #Support
             #region #Prices
             case 3:
                 Prices.ShowMenu();
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
             #endregion #Prices
             case 4:
                 Masters.ShowMenu();
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
             #region #Company
             case 5:
                 Companies.ShowMenu();
-                return EWorkWithMenu.ContinueWork;
+                return WorkWithMenu.ContinueWork;
             #endregion #Company
         }
-        return EWorkWithMenu.QuitMenu;
+        return WorkWithMenu.QuitMenu;
     }
 }
