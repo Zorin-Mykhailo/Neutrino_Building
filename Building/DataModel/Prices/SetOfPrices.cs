@@ -8,50 +8,40 @@ namespace Building;
 public class SetOfPrices : EntitySet<Price>
 {
 
-    public SetOfPrices(int id, string name) : base(id, name)
+    public SetOfPrices(Int32 id, String name) : base(id, name)
     {
         Menu = new("Перелік цін на :", ConsoleColor.Red)
-        {
-            new (1, "Матеріали"),
-            new (2, "Інструменти"),
-            new (3, "Послуги"),
-        };
-    }
-
-    protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
-        switch(menuItemNumber)
-        {
-            case 0:
-                return WorkWithMenu.QuitMenu;
+        new (1, "Послуги"),
+        new (2, "Матеріали"),
+        new (3, "Інструменти"),
+    };
 
-            case 1:
-                this.Where(e => e.Type == PricesType.Material).ForEach(e => Console.WriteLine(e));
-                return WorkWithMenu.ContinueWork;
-
-            case 2:
-                this.Where(e => e.Type == PricesType.Instrument).ForEach(e => Console.WriteLine(e));
-                return WorkWithMenu.ContinueWork;
-
-            case 3:
-                this.Where(e => e.Type == PricesType.Service).ForEach(e => Console.WriteLine(e));
-                return WorkWithMenu.ContinueWork; 
-        }
-        return base.HandleMenuChoice(menuItemNumber);
+        var menu = Enum.GetValues(typeof(ItemType));
     }
 
+    protected override WorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
+    {
+        if(menuItemNumber == 0) { return WorkWithMenu.QuitMenu; }
 
+        this.Where(e => (int)e.Type == menuItemNumber).ForEach(e => Console.WriteLine(e));
+        return WorkWithMenu.ContinueWork;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -81,58 +81,49 @@ internal class Program
         #region #Prices
         SetOfPrices prices = new (3, "Ціни")
         {
-            new (1)
+            new (1, 168.25m, true)
             {
                Name = "Мішок цементу",
-               ItemPrice = 168.25m ,
                Type = PricesType.Material
             },
-            new (2)
+            new (2, 126.0m, false)
             {
                Name = "Мішок штукатурки",
-               ItemPrice = 126.0m ,
                Type = PricesType.Material
             },
-            new (3)
+            new (3, 450.0m, false)
             {
                Name = "Мішок шпаклівки",
-               ItemPrice = 450.0m ,
                Type = PricesType.Material
             },
-            new (4)
+            new (4, 2250.0m, true)
             {
                Name = "Ларезний рівень",
-               ItemPrice = 2250.0m ,
                Type = PricesType.Instrument
             },
-            new (5)
+            new (5, 3100.0m, false)
             {
                Name = "Перфоратор",
-               ItemPrice = 3100.0m ,
                Type = PricesType.Instrument
             },
-            new (6)
+            new (6, 899.0m, false)
             {
                Name = "Набір викруток",
-               ItemPrice = 899.0m ,
                Type = PricesType.Instrument
             },
-            new (7)
+            new (7, 880.0m, true )
             {
                Name = "Ремонт даху будівлі, метр квадратний",
-               ItemPrice = 880.0m ,
                Type = PricesType.Service
             },
-            new (8)
+            new (8, 1100.0m, true)
             {
                Name = "Автоперевезення, ціна за 100 кг",
-               ItemPrice = 1100.0m ,
                Type = PricesType.Service
             },
-            new (9)
+            new (9, 500.0m, true)
             {
                Name = "Консультація електрика",
-               ItemPrice = 500.0m ,
                Type = PricesType.Service
             }
         };
