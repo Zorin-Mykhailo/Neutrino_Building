@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{077633D5-FCB2-4A9E-A317-E1503FCE1DCB}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		DB_Scripts.sql = DB_Scripts.sql
 		HowTo.md = HowTo.md
 		Readme.md = Readme.md
 		TechTasks.md = TechTasks.md
