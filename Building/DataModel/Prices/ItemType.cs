@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Building;
-public enum PricesType 
+public enum ItemType 
 {
 
     Service = 1,
