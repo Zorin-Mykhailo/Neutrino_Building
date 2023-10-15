@@ -13,7 +13,7 @@ public class Price : Entity
     public readonly DateTime AvailableDate;
     public PricesType Type { get; set; }
 
-    public Price(Int32 id, decimal Price, bool IsOnDiscount) : base(id)
+    public Price(int id, decimal Price, bool IsOnDiscount) : base(id)
     {
         AvailableDate = PriceManager.SetAvailableDate();
         if(IsOnDiscount == true)
