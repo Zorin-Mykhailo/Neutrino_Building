@@ -9,7 +9,9 @@ public static class CompanyStateExtensions
 
     static CompanyStateExtensions()
     {
-        _namesOfEnum = []; // TODO розібратись або запитати викладача. Що це за ініціалізація така (її запропонувала VS) не 'new()' а '[]'. Вперше таке бачу.
+        _namesOfEnum = [];
+        // TODO розібратись або запитати викладача. Що це за ініціалізація така (її запропонувала VS) не 'new()' а '[]'. Вперше таке бачу.
+        //ANSWER This line initializes a variable named _namesOfEnum and assigns an empty array to it.
         Registration(E.New, "Нова Компанія");
         Registration(E.InProgres, "Існуюча Компанія");
         Registration(E.Closed, "Закрита Компанія");

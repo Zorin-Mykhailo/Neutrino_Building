@@ -33,6 +33,19 @@ values
 
 Select * from [Building].[SupportTicket]
 
--- Other team members
+--
+create table [Building].[Company]
+(
+  Id int primary key, 
+  NameOfCompany nvarchar(50),
+  Description nvarchar(250),
+  Owner nvarchar(250),
+)
+go
 
--- insert your code here
+insert into [Building].[Company] (Id, NameOfCompany, Description, Owner)
+values
+(1, 'OBID', 'We are grate small company :3', 'George'),
+(2, 'ASD', 'Ass seak Destroyers', 'Obama'),
+(3, 'Aler dance', 'Papaute ute ute', 'Bold guy')
+-- Moroz Hordii
