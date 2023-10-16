@@ -141,4 +141,40 @@ insert into [Zorin].[MasterTypes] values
 insert into [Zorin].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
 (1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5)
 
+
+create table [Zorin].[PricesType]
+(
+Id int primary key,
+PriceTypeName nvarchar(20)
+)
+
+
+
+create table [Zorin].[Prices]
+(
+Id int primary key,
+Name nvarchar(20),
+ItemPrice Decimal,
+AvailableDate Date,
+PricesTypeId int foreign key references [Zorin].[PricesType]
+)
+
+
+insert into [Zorin].[PricesType] values 
+(1, 'Service'),
+(2, 'Material'),
+(3, 'Instrument')
+
+
+insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
+(1, 'Cement bag', 168.25, "2023-10-18",2),  
+(2, 'Plaster bag', 126.0, "2023-10-18",2),
+(3, 'Putty bag', 450.0, "2023-10-18",2),
+(4, 'Laser level', 2250.0, "2023-10-18",3),
+(5, 'Jack hammer', 3100.0, "2023-10-18",3),
+(6, 'Pack of screwdrivers', 899.0, "2023-10-18",3),
+(7, 'Roof fix', 880.0, "2023-10-18",1),
+(8, 'Auto delivery', 1100.0, "2023-10-18",1),
+(9, 'Electrician consultation', 500.0, "2023-10-18",1)
+
 -- insert your tables here -----------------------------------------------------------------------------------
