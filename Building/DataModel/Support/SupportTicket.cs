@@ -33,7 +33,7 @@ public class SupportTicket : Entity
 
     /// <summary> Перевизначимо необхідним чином приведення до стрічки </summary>
     public override string ToString()
-        => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {Title} -- from {AutorEmail} -- {State.AsStr()}";
+        => $"{base.ToString()} ⚡ {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {Title} -- from {AutorEmail} -- {State.AsSignAndStr()}";
 }
 
 #endregion #Support
