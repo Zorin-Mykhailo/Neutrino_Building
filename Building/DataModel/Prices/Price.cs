@@ -9,11 +9,14 @@ public class Price : Entity
 {
     const int DiscountPercentage = 11;
     public required string Name { get; set; }
-    public decimal ItemPrice { get; set; }
-    public readonly DateTime AvailableDate;
+
+    public readonly decimal ItemPrice;
+
+    public DateTime AvailableDate;
     public PricesType Type { get; set; }
 
     public Price(int id, decimal Price, bool IsOnDiscount) : base(id)
+
     {
         AvailableDate = PriceManager.SetAvailableDate();
         if(IsOnDiscount == true)

@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Building;
 internal class PriceManager
 {
-    public static DateTime SetAvailableDate()
+    public static DateTime SetAvailableDate() 
     {
         DateTime AvailableDate = DateTime.Now;
-        AvailableDate = AvailableDate.AddDays(2);   
+        DateCounter date = new DateCounter();
+        AvailableDate = date.Date;
         return AvailableDate;
     }
 
