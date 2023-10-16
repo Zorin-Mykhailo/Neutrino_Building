@@ -4,7 +4,6 @@ public class Company : Entity
 {
     public const string DirectionInIndustry = "Construction and restoration";
 
-    private int _id;
     private string _description = string.Empty; 
     private string _owner = string.Empty;
     
@@ -18,11 +17,6 @@ public class Company : Entity
     {
         get => _description;
         set => _description = value;
-    }
-    public int Id // Гордій, ця властивість приховує Id базового класу Entity!
-    {
-        get => _id;
-        set => _id = value;
     }
     public string Owner
     {
