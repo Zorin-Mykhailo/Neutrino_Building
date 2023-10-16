@@ -112,4 +112,33 @@ values
 
 Select * from [Zorin].[SupportTicket]
 
+create table [Zorin].[MasterTypes]
+(
+	Id int primary key,
+	MasterTypeName nvarchar(50)
+)
+create table [Zorin].[Masters]
+(
+	Id int primary key,
+	FirstName nvarchar(50),
+	LastName nvarchar(50),
+	Email nvarchar(50),
+	PhoneNumber int,
+	MasterTypeId int foreign key references [Zorin].[MasterTypes] 
+)
+
+
+insert into [Zorin].[MasterTypes] values
+(1, 'Plumber'),
+(2, 'Electrician'),
+(3, 'Repairer'),
+(4, 'Foreman'),
+(5, 'Gardener'),
+(6, 'Cleaner'),
+(7, 'PoolMaster'),
+(8, 'General')
+
+insert into [Zorin].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
+(1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5)
+
 -- insert your tables here -----------------------------------------------------------------------------------
