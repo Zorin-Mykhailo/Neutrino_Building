@@ -15,10 +15,11 @@ public class Price : Entity
     public DateTime AvailableDate;
     public PricesType Type { get; set; }
 
-    public Price(int id, decimal Price, bool IsOnDiscount) : base(id)
+    public Price(int id, decimal Price, bool IsOnDiscount, int Delay) : base(id)
 
     {
-        AvailableDate = PriceManager.SetAvailableDate();
+        AvailableDate = PriceManager.SetAvailableDate(Delay);
+
         if(IsOnDiscount == true)
         {
             ItemPrice = PriceManager.SetPrice(Price, DiscountPercentage);
