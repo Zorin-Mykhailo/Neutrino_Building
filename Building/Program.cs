@@ -29,6 +29,9 @@ internal class Program
 
         // From InProgres to Reopened → ArgumentException with inner NotImplementedException
         mainMenu.SupportTickets[2].State = SupportTicketState.Reopened;
+
+        // From InProgres to ForgotenState → SystemException (with rewriting stack trace)
+        // mainMenu.SupportTickets[2].State = SupportTicketState.ForgotenState;
 #endif
     }
 

@@ -20,12 +20,13 @@ public class SupportTicket : Entity
                     throw new NotImplementedException("This feature not implemented");
                 if(value < _state)
                     throw new ArgumentException("You can't assign previous state");
+                if(value == SupportTicketState.ForgotenState) throw new InvalidOperationException("This state is forbiden. Please don't use it.");
             }
-            catch (NotImplementedException ex)
+            catch(NotImplementedException ex)
             {
                 try
                 {
-                    if(_state !=  SupportTicketState.Closed && value == SupportTicketState.Reopened)
+                    if(_state != SupportTicketState.Closed && value == SupportTicketState.Reopened)
                     {
                         throw new ArgumentException("You can assign state Reopened only if previous state is Closed", ex);
                     }
@@ -36,6 +37,10 @@ public class SupportTicket : Entity
                 {
                     throw;
                 }
+            }
+            catch (InvalidOperationException)
+            {
+                throw new Exception("Something went wrong");
             }
             _state = value;
         }
