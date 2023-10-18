@@ -1,4 +1,4 @@
-﻿// Program.cs
+﻿#define ZorinM__HW10_ExceptionsHandling
 
 using Building.DataModel.Master;
 using System.Text;
@@ -19,9 +19,17 @@ internal class Program
             SupportTickets = GetMenuItemsSet_Support(),
             Prices = GetMenuItemsSet_Prices(),
             Masters = GetMenuItemsSet_Masters()
-        };
+        };        
 
         mainMenu.ShowMenu();
+
+#if ZorinM__HW10_ExceptionsHandling
+        // From Closed to Reopened → NotImplementedException
+        // mainMenu.SupportTickets[3].State = SupportTicketState.Reopened;
+
+        // From InProgres to Reopened → ArgumentException with inner NotImplementedException
+        mainMenu.SupportTickets[2].State = SupportTicketState.Reopened;
+#endif
     }
 
     private static SetOfArticles GetMenuItemsSet_Articles()
@@ -66,6 +74,8 @@ internal class Program
 
         return supportTickets;
     }
+
+    
 
     private static SetOfCompany GetMenuItemsSet_Companies()
     {
