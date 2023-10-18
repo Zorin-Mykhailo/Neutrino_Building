@@ -17,7 +17,7 @@ public class SetOfPrices : EntitySet<Price>
         new (3, "Інструменти"),
     };
 
-        var menu = Enum.GetValues(typeof(ItemType));
+        var menu = Enum.GetValues(typeof(PricesType));
     }
 
     protected override WorkWithMenu HandleMenuChoice(Int32 menuItemNumber)
