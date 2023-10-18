@@ -6,11 +6,10 @@ namespace Building;
 /// <summary> Стан звернення в технічну службу </summary>
 public enum SupportTicketState
 {
-    /// <summary> Нове </summary>
-    New,
-    /// <summary> В роботі </summary>
-    InProgres,
-    /// <summary> Завершене </summary>
-    Closed
+    New = 0,
+    Reopened = 1,
+    InProgres = 3,
+    ForgotenState = 4,
+    Closed = 5,
 }
 #endregion #Support

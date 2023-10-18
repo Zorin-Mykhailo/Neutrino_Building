@@ -3,35 +3,61 @@
 #region #Support
 namespace Building;
 
-/// <summary> Звернення в тех. підтримку </summary>
 public class SupportTicket : Entity
 {
-    /// <summary> Дата створення звернення </summary>
     public DateTime CreationTime { get; private set; }
 
-    /// <summary> Стан звернення </summary>
-    public SupportTicketState State { get; set; } = SupportTicketState.New;
+    private SupportTicketState _state = SupportTicketState.New;
 
-    /// <summary> Стисла назва звернення </summary>
+    public SupportTicketState State
+    {
+        get => _state;
+        set
+        {
+            try
+            {
+                if(value == SupportTicketState.Reopened)
+                    throw new NotImplementedException("This feature not implemented");
+                if(value < _state)
+                    throw new ArgumentException("You can't assign previous state");
+                if(value == SupportTicketState.ForgotenState) throw new InvalidOperationException("This state is forbiden. Please don't use it.");
+            }
+            catch(NotImplementedException ex)
+            {
+                try
+                {
+                    if(_state != SupportTicketState.Closed && value == SupportTicketState.Reopened)
+                    {
+                        throw new ArgumentException("You can assign state Reopened only if previous state is Closed", ex);
+                    }
+                    if(value == SupportTicketState.Reopened)
+                        throw;
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                throw new Exception("Something went wrong");
+            }
+            _state = value;
+        }
+    }
+
     public required string Title { get; init; }
 
-    /// <summary> Email автора </summary>
     public required string AutorEmail { get; init; }
 
-    /// <summary> Текст звернення </summary>
     public required string Text { get; init; }
 
-    /// <summary> Конструктор, що наслідуєься від базового </summary>
-    /// <param name="id"></param>
     public SupportTicket(int id, DateTime creationTime) : base(id)
         => CreationTime = creationTime;
 
-    /// <summary> Перевантажений конструктор в якому автоматично заповнюється дата створення </summary>
-    /// <param name="id"></param>
     public SupportTicket(int id) : base(id)
         => CreationTime = DateTime.Now;
 
-    /// <summary> Перевизначимо необхідним чином приведення до стрічки </summary>
     public override string ToString()
         => $"{base.ToString()} 📝 {CreationTime:yyyy.MM.dd(ddd) HH:mm} -- {Title} -- from {AutorEmail} -- {State.AsStr()}";
 }

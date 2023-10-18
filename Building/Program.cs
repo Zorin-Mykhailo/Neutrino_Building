@@ -1,4 +1,4 @@
-﻿// Program.cs
+﻿#define ZorinM__HW10_ExceptionsHandling
 
 using Building.DataModel.Master;
 using System.Text;
@@ -12,13 +12,41 @@ internal class Program
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;
 
-        SetOfArticles articles = new(1, "Статті") 
+        MainMenu mainMenu = new()
+        {
+            Articles = GetMenuItemsSet_Articles(),
+            Companies = GetMenuItemsSet_Companies(),
+            SupportTickets = GetMenuItemsSet_Support(),
+            Prices = GetMenuItemsSet_Prices(),
+            Masters = GetMenuItemsSet_Masters()
+        };        
+
+        mainMenu.ShowMenu();
+
+#if ZorinM__HW10_ExceptionsHandling
+        // From Closed to Reopened → NotImplementedException
+        // mainMenu.SupportTickets[3].State = SupportTicketState.Reopened;
+
+        // From InProgres to Reopened → ArgumentException with inner NotImplementedException
+        mainMenu.SupportTickets[2].State = SupportTicketState.Reopened;
+
+        // From InProgres to ForgotenState → SystemException (with rewriting stack trace)
+        // mainMenu.SupportTickets[2].State = SupportTicketState.ForgotenState;
+#endif
+    }
+
+    private static SetOfArticles GetMenuItemsSet_Articles()
+    {
+        SetOfArticles articles = new(1, "Статті")
         {
             new (1) { Title = "Стаття 1", Actuality = Actuality.Deprecated },
             new (34) { Title = "Стаття 2" }
         };
+        return articles;
+    }
 
-        #region #Support
+    private static SetOfSupportTickets GetMenuItemsSet_Support()
+    {
         SetOfSupportTickets supportTickets = new (2, "Технічна підтримка")
         {
             new (1)
@@ -26,8 +54,8 @@ internal class Program
                 Title = "Не працює мишка",
                 Actuality = Actuality.Actual,
                 AutorEmail = "v.pupkin@mail.com",
-                Text = "Перестала працювати мишка. Можливо ...", 
-                State = SupportTicketState.New                
+                Text = "Перестала працювати мишка. Можливо ...",
+                State = SupportTicketState.New
             },
             new (2)
             {
@@ -46,8 +74,14 @@ internal class Program
                 State = SupportTicketState.Closed
             }
         };
-#endregion #Support
-#region #Company
+
+        return supportTickets;
+    }
+
+    
+
+    private static SetOfCompany GetMenuItemsSet_Companies()
+    {
         SetOfCompany companies = new(2, "Компанії")
         {
             new(1)
@@ -75,10 +109,11 @@ internal class Program
                 State = CompanyState.New
             }
         };
-#endregion #Company
+        return companies;
+    }
 
-
-        #region #Prices
+    private static SetOfPrices GetMenuItemsSet_Prices()
+    {
         SetOfPrices prices = new (3, "Ціни")
         {
             new (1, 168.25m, true, "3")
@@ -127,8 +162,12 @@ internal class Program
                Type = PricesType.Service,
             }
         };
-        #endregion #Prices
 
+        return prices;
+    }
+
+    private static SetOfMasters GetMenuItemsSet_Masters()
+    {
         SetOfMasters masters = new (4, "Майстри")
         {
             new (1)
@@ -189,21 +228,6 @@ internal class Program
             },
         };
 
-        MainMenu mainMenu = new()
-        {
-             Articles = articles,
-        #region #Company
-            Companies = companies,
-        #endregion #Company
-        #region #Support
-             SupportTickets = supportTickets,
-        #endregion #Support
-        #region #Prices
-             Prices = prices,
-        #endregion #Prices
-             Masters = masters
-        };
-
-        mainMenu.ShowMenu();
+        return masters;
     }
 }
