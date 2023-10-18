@@ -81,47 +81,47 @@ internal class Program
         #region #Prices
         SetOfPrices prices = new (3, "Ціни")
         {
-            new (1, 168.25m, true, 2)
+            new (1, 168.25m, true, "3")
             {
                Name = "Мішок цементу",
                Type = PricesType.Material,
             },
-            new (2, 126.0m, false, 3)
+            new (2, 126.0m, false, "5")
             {
                Name = "Мішок штукатурки",
                Type = PricesType.Material,
             },
-            new (3, 450.0m, false, 2)
+            new (3, 450.0m, false, "4")
             {
                Name = "Мішок шпаклівки",
                Type = PricesType.Material,
             },
-            new (4, 2250.0m, true, 4)
+            new (4, 2250.0m, true, "2")
             {
                Name = "Ларезний рівень",
                Type = PricesType.Instrument,
             },
-            new (5, 3100.0m, false, 1)
+            new (5, 3100.0m, false, "1")
             {
                Name = "Перфоратор",
                Type = PricesType.Instrument,
             },
-            new (6, 899.0m, false, 4)
+            new (6, 899.0m, false, "4")
             {
                Name = "Набір викруток",
                Type = PricesType.Instrument,
             },
-            new (7, 880.0m, true, 5 )
+            new (7, 880.0m, true, "5" )
             {
                Name = "Ремонт даху будівлі, метр квадратний",
                Type = PricesType.Service,
             },
-            new (8, 1100.0m, true, 1)
+            new (8, 1100.0m, true, "1")
             {
                Name = "Автоперевезення, ціна за 100 кг",
                Type = PricesType.Service,
             },
-            new (9, 500.0m, true, 999999999)
+            new (9, 500.0m, true, "99999999")
             {
                Name = "Консультація електрика",
                Type = PricesType.Service,

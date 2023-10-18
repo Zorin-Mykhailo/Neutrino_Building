@@ -12,13 +12,13 @@ public class Price : Entity
 
     public readonly decimal ItemPrice;
 
-    public DateTime AvailableDate;
+    public DateTime AvailableDate = DateTime.Today;
     public PricesType Type { get; set; }
 
-    public Price(int id, decimal Price, bool IsOnDiscount, int Delay) : base(id)
-
+    public Price(int id, decimal Price, bool IsOnDiscount, string Delay) : base(id)
     {
         AvailableDate = PriceManager.SetAvailableDate(Delay);
+
 
         if(IsOnDiscount == true)
         {

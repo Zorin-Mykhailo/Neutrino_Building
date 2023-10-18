@@ -9,7 +9,7 @@ internal record DateCounter
 {
     public DateTime Date { get; init; }
 
-    public DateCounter(byte Delay)
+    public DateCounter(int Delay)
     {
         DateTime Today = DateTime.Today;
         try
@@ -21,7 +21,7 @@ internal record DateCounter
             }
             catch(ArgumentOutOfRangeException ex)
             {
-                throw new Exception($"Невірне число для підрахування затримки дати виконання!{ex.StackTrace}");
+                throw new Exception($"Невірне число для підрахування затримки дати виконання! {ex.StackTrace}");
             }
         }
         catch (Exception ex)
