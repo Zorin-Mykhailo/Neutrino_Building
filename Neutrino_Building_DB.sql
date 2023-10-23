@@ -153,7 +153,7 @@ PriceTypeName nvarchar(20)
 create table [Zorin].[Prices]
 (
 Id int primary key,
-Name nvarchar(20),
+Name nvarchar(50),
 ItemPrice Decimal,
 AvailableDate Date,
 PricesTypeId int foreign key references [Zorin].[PricesType]
