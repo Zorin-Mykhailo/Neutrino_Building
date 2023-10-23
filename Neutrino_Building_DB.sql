@@ -167,14 +167,14 @@ insert into [Zorin].[PricesType] values
 
 
 insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
-(1, 'Cement bag', 168.25, "2023-10-18",2),  
-(2, 'Plaster bag', 126.0, "2023-10-18",2),
-(3, 'Putty bag', 450.0, "2023-10-18",2),
-(4, 'Laser level', 2250.0, "2023-10-18",3),
-(5, 'Jack hammer', 3100.0, "2023-10-18",3),
-(6, 'Pack of screwdrivers', 899.0, "2023-10-18",3),
-(7, 'Roof fix', 880.0, "2023-10-18",1),
-(8, 'Auto delivery', 1100.0, "2023-10-18",1),
-(9, 'Electrician consultation', 500.0, "2023-10-18",1)
+(1, 'Cement bag', 168.25, '2023-10-18',2),  
+(2, 'Plaster bag', 126.0, '2023-10-18',2),
+(3, 'Putty bag', 450.0, '2023-10-18',2),
+(4, 'Laser level', 2250.0, '2023-10-18',3),
+(5, 'Jack hammer', 3100.0, '2023-10-18',3),
+(6, 'Pack of screwdrivers', 899.0, '2023-10-18',3),
+(7, 'Roof fix', 880.0, '2023-10-18',1),
+(8, 'Auto delivery', 1100.0, '2023-10-18',1),
+(9, 'Electrician consultation', 500.0, '2023-10-18',1)
 
 -- insert your tables here -----------------------------------------------------------------------------------
