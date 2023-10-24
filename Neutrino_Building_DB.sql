@@ -166,6 +166,8 @@ insert into [Zorin].[PricesType] values
 (2, 'Material'),
 (3, 'Instrument')
 
+alter table [Zorin].[Prices] alter column [Name] nvarchar(50)
+
 insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
 (1, 'Cement bag', 168.25, '2023-10-18',2),  
 (2, 'Plaster bag', 126.0, '2023-10-18',2),
