@@ -153,18 +153,18 @@ PriceTypeName nvarchar(20)
 create table [Zorin].[Prices]
 (
 Id int primary key,
-Name nvarchar(50),
+Name nvarchar(20),
 ItemPrice Decimal,
 AvailableDate Date,
 PricesTypeId int foreign key references [Zorin].[PricesType]
 )
 
+alter table [Zorin].[PricetType] alter column [PriceTypeName] nvarchar(50)
 
 insert into [Zorin].[PricesType] values 
 (1, 'Service'),
 (2, 'Material'),
 (3, 'Instrument')
-
 
 insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
 (1, 'Cement bag', 168.25, '2023-10-18',2),  
