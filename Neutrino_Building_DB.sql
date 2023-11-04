@@ -1,11 +1,15 @@
+﻿USE [master]
+GO
+
+alter database [Neutrino_Building] set single_user with rollback immediate
 DROP DATABASE IF EXISTS [Neutrino_Building];
 
 CREATE DATABASE [Neutrino_Building]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'Neutrino_Building', FILENAME = N'C:\_DB\Data\Neutrino_Building.mdf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
+( NAME = N'Neutrino_Building__DATA', FILENAME = N'C:\_DB\Neutrino\Neutrino_Building__Data.mdf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
  LOG ON 
-( NAME = N'Neutrino_Building_log', FILENAME = N'C:\_DB\Data\Neutrino_Building_log.ldf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
+( NAME = N'Neutrino_Building__LOG', FILENAME = N'C:\_DB\Neutrino\Neutrino_Building_LOG.ldf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
 GO
 ALTER DATABASE [Neutrino_Building] SET COMPATIBILITY_LEVEL = 150
 GO
@@ -79,12 +83,14 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = Off;
 GO
 ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = Primary;
 GO
+
+
 USE [Neutrino_Building]
 GO
 IF NOT EXISTS (SELECT name FROM sys.filegroups WHERE is_default=1 AND name = N'PRIMARY') ALTER DATABASE [Neutrino_Building] MODIFY FILEGROUP [PRIMARY] DEFAULT
 GO
 
--- Zorin Mykhailo ----------------------------------------------------------------------------------------------
+-- █████ 👤 Zorin Mykhailo ████████████████████████████████████████████████████████████████████████████████████████████
 
 USE [Neutrino_Building]
 go
@@ -96,39 +102,124 @@ go
 create table [Zorin].[SupportTicket]
 (
 	Id int primary key,
-	Actuality int,
-	State int,
 	Title nvarchar(250),
+	Actuality int,
 	AuthorEmail nvarchar(250),
 	Text nvarchar(max),
+	State int,
 )
 go
 
-insert into [Zorin].[SupportTicket] (Id, Title, Actuality, AuthorEmail, Text, State)
-values
-(1, N'�� ������ �����', 1, N'v.pupkin@mail.com', N'��������� ��������� �����. ������� ...', 0),
-(2, N'��� ������ �������� MyApp', 1, N'm.romaskina@mail.com', N'̳� ������� �������� ��������� � ��''���� �� ...', 1),
-(3, N'�� �������� ������ API', 0, N'r.ivanov@mail.com', N'̳� ������� �������� ��������� � ��''���� �� ������ � ������ API, �� ����...', 2)
+create procedure Zorin.Create_SupportTicket
+	@id int,
+	@title nvarchar(250),
+	@actuality int,
+	@authorEmail nvarchar(250),
+	@text nvarchar(max),
+	@state int
+as
+	insert into [Zorin].[SupportTicket] (Id, Title, Actuality, AuthorEmail, Text, State)
+	values
+	(@id, @title, @actuality, @authorEmail, @text, @state)
+go
 
-Select * from [Zorin].[SupportTicket]
+create procedure Zorin.GetAllItems_SupportTicket
+as
+	select * from [Zorin].[SupportTicket]
+go
 
-create table [Zorin].[MasterTypes]
+create procedure Zorin.GetById_SupportTicket
+	@id int
+as
+	select * from [Zorin].[SupportTicket]
+	where id = @id
+go
+
+create procedure Zorin.UpdateById_SupportTicket
+	@id int,
+	@title nvarchar(250),
+	@actuality int,
+	@authorEmail nvarchar(250),
+	@text nvarchar(max),
+	@state int
+as
+	update [Zorin].[SupportTicket]
+	set Title = @title, Actuality = @actuality, AuthorEmail = @authorEmail, [Text] = @text, [State] = @state
+	where id = @id
+go
+
+create procedure Zorin.DeleteById_SupportTicket
+	@id int
+as
+	delete from [Zorin].[SupportTicket]
+	where id = @id
+go
+
+execute Zorin.Create_SupportTicket
+	@id = 1,
+	@title = N'Не працює мишка', 
+	@actuality = 1, 
+	@authorEmail = N'v.pupkin@mail.com', 
+	@text = N'Перестала працювати мишка. Можливо ...', 
+	@state = 0
+
+execute Zorin.Create_SupportTicket
+	@id = 2, 
+	@title = N'Збій роботи програми MyApp', 
+	@actuality = 1, 
+	@authorEmail = N'm.romaskina@mail.com', 
+	@text = N'Мій додаток перестав працювати в зв''язку із ...', 
+	@state = 1
+
+execute Zorin.Create_SupportTicket
+	@id = 3, 
+	@title = N'Не коректна робота API', 
+	@actuality = 0, 
+	@authorEmail = N'r.ivanov@mail.com', 
+	@text = N'Мій додаток перестав працювати в зв''язку із змінами у вашому API, що були...', 
+	@state = 2
+
+execute Zorin.GetAllItems_SupportTicket
+
+execute Zorin.UpdateById_SupportTicket
+	@id = 1,
+	@title = N'Не працює мишка', 
+	@actuality = 1, 
+	@authorEmail = N'v.pupkin@mail.com', 
+	@text = N'Перестала працювати мишка. Можливо забігалась...', 
+	@state = 0
+
+execute Zorin.GetById_SupportTicket @id = 1
+execute Zorin.DeleteById_SupportTicket @id = 1
+execute Zorin.GetAllItems_SupportTicket
+
+
+-- █████ 👤 Natalia Pyslyar ████████████████████████████████████████████████████████████████████████████████████████████
+
+USE [Neutrino_Building]
+go
+create schema Pyslyar
+go
+
+
+
+create table [Pyslyar].[MasterTypes]
 (
 	Id int primary key,
 	MasterTypeName nvarchar(50)
 )
-create table [Zorin].[Masters]
+create table [Pyslyar].[Masters]
 (
 	Id int primary key,
 	FirstName nvarchar(50),
 	LastName nvarchar(50),
 	Email nvarchar(50),
 	PhoneNumber int,
-	MasterTypeId int foreign key references [Zorin].[MasterTypes] 
+	MasterTypeId int foreign key references [Pyslyar].[MasterTypes] 
 )
 
 
-insert into [Zorin].[MasterTypes] values
+insert into [Pyslyar].[MasterTypes] values
 (1, 'Plumber'),
 (2, 'Electrician'),
 (3, 'Repairer'),
@@ -138,37 +229,45 @@ insert into [Zorin].[MasterTypes] values
 (7, 'PoolMaster'),
 (8, 'General')
 
-insert into [Zorin].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
+insert into [Pyslyar].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
 (1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5)
 
 
-create table [Zorin].[PricesType]
+
+
+
+-- █████ 👤 Pavlo Eksarov ████████████████████████████████████████████████████████████████████████████████████████████
+
+USE [Neutrino_Building]
+go
+create schema Eksarov
+go
+
+create table [Eksarov].[PricesType]
 (
 Id int primary key,
 PriceTypeName nvarchar(20)
 )
 
-
-
-create table [Zorin].[Prices]
+create table [Eksarov].[Prices]
 (
 Id int primary key,
 Name nvarchar(20),
 ItemPrice Decimal,
 AvailableDate Date,
-PricesTypeId int foreign key references [Zorin].[PricesType]
+PricesTypeId int foreign key references [Eksarov].[PricesType]
 )
 
-alter table [Zorin].[PricetType] alter column [PriceTypeName] nvarchar(50)
+alter table [Eksarov].[PricesType] alter column [PriceTypeName] nvarchar(50)
 
-insert into [Zorin].[PricesType] values 
+insert into [Eksarov].[PricesType] values 
 (1, 'Service'),
 (2, 'Material'),
 (3, 'Instrument')
 
-alter table [Zorin].[Prices] alter column [Name] nvarchar(50)
+alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
 
-insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
+insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
 (1, 'Cement bag', 168.25, '2023-10-18',2),  
 (2, 'Plaster bag', 126.0, '2023-10-18',2),
 (3, 'Putty bag', 450.0, '2023-10-18',2),
@@ -178,5 +277,3 @@ insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) 
 (7, 'Roof fix', 880.0, '2023-10-18',1),
 (8, 'Auto delivery', 1100.0, '2023-10-18',1),
 (9, 'Electrician consultation', 500.0, '2023-10-18',1)
-
--- insert your tables here -----------------------------------------------------------------------------------
