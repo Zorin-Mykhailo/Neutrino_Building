@@ -179,4 +179,49 @@ insert into [Zorin].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) 
 (8, 'Auto delivery', 1100.0, '2023-10-18',1),
 (9, 'Electrician consultation', 500.0, '2023-10-18',1)
 
--- insert your tables here -----------------------------------------------------------------------------------
+
+create table [Zorin].[Company]
+(
+  Id int primary key, 
+  NameOfCompany nvarchar(50),
+  Description nvarchar(250),
+  Owner nvarchar(250),
+)
+
+insert into [Zorin].[Company] (Id, NameOfCompany, Description, Owner)
+values
+(1, 'OBID', 'We are grate small company :3', 'George'),
+(2, 'ASD', 'Ass seak Destroyers', 'Obama'),
+(3, 'Aler dance', 'Papaute ute ute', 'Bold guy')
+-- Moroz -----------------------------------------------------------------------------------
+USE [Neutrino_Building]
+go
+create schema Moroz
+go
+
+create table [Moroz].[CompanyType]
+(
+	Id int primary key,
+	CType nvarchar(50)
+)
+create table [Moroz].[Company]
+(
+	Id int primary key,
+	NameOfCompany nvarchar(50),
+	Description nvarchar(250),
+	Owner nvarchar(250),
+	CompanyTypeId int foreign key references [Moroz].[CompanyType]
+)
+insert into [Moroz].[CompanyType] values
+(1, 'General Contractors'),
+(2, 'Commercial Construction Companies'),
+(3, 'Real Estate Developers'),
+(4, 'Renovation and Remodeling Contractors'),
+(5, 'Construction Management')
+
+insert into [Moroz].[Company] (Id, NameOfCompany, Description, Owner, CTypeId)
+values
+(1, 'OBID', 'We are grate small company :3', 'George', 1),
+(2, 'ASD', 'Ass seak Destroyers', 'Obama', 3),
+(3, 'Aler dance', 'Papaute ute ute', 'Bold guy', 4)
+
