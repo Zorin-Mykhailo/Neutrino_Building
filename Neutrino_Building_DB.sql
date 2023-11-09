@@ -308,7 +308,7 @@ create table [Moroz].[Company]
 	NameOfCompany nvarchar(50),
 	Description nvarchar(250),
 	Owner nvarchar(250),
-	CompanyTypeId int foreign key references [Moroz].[CompanyType]
+	CTypeId int foreign key references [Moroz].[CompanyType]
 )
 insert into [Moroz].[CompanyType] values
 (1, 'General Contractors'),
