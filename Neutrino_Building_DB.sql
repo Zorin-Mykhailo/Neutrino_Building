@@ -125,13 +125,27 @@ go
 
 create procedure Zorin.GetAllItems_SupportTicket
 as
-	select * from [Zorin].[SupportTicket]
+	select
+		Id
+		, Title
+		, Actuality
+		, AuthorEmail
+		, Text
+		, State
+	from [Zorin].[SupportTicket]
 go
 
 create procedure Zorin.GetById_SupportTicket
 	@id int
 as
-	select * from [Zorin].[SupportTicket]
+	select
+		Id
+		, Title
+		, Actuality
+		, AuthorEmail
+		, Text
+		, State
+	from [Zorin].[SupportTicket]
 	where id = @id
 go
 
