@@ -1,4 +1,4 @@
-﻿﻿USE [master]
+USE [master]
 GO
 
 alter database [Neutrino_Building] set single_user with rollback immediate
@@ -192,9 +192,7 @@ execute Zorin.Create_SupportTicket
 	@authorEmail = N'r.ivanov@mail.com', 
 	@text = N'Мій додаток перестав працювати в зв''язку із змінами у вашому API, що були...', 
 	@state = 2
-
-execute Zorin.GetAllItems_SupportTicket
-
+  
 execute Zorin.UpdateById_SupportTicket
 	@id = 1,
 	@title = N'Не працює мишка', 
@@ -206,7 +204,6 @@ execute Zorin.UpdateById_SupportTicket
 execute Zorin.GetById_SupportTicket @id = 1
 execute Zorin.DeleteById_SupportTicket @id = 1
 execute Zorin.GetAllItems_SupportTicket
-
 
 -- █████ 👤 Natalia Pyslyar ████████████████████████████████████████████████████████████████████████████████████████████
 
@@ -387,4 +384,3 @@ execute Moroz.UpdateById_Company
 execute Moroz.GetById_Company @id = 1
 execute Moroz.DeleteById_Company @id = 2
 execute Moroz.GetAllItems_Company
-
