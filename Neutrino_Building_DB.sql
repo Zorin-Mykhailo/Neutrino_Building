@@ -326,6 +326,17 @@ as
 	where id = @id
 go
 
+create procedure Eksarov.GetByTypeJoined_PricesType
+    @id int
+as
+	select
+		Id
+		, PricesTypeName
+	from [Eksarov].[PricesType]
+	join [Eksarov].[Prices] on [PricesType].Id = [Prices].PricesTypeId
+	where Id = @id 
+go
+
 create procedure Eksarov.UpdateById_Prices
 	@id int,
 	@name nvarchar(50),
