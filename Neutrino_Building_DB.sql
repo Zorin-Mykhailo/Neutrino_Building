@@ -287,7 +287,7 @@ go
 alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
 go
 
-create procedure Eksarov.Create_Price
+create procedure Eksarov.Create_Prices
 	@id int,
 	@name nvarchar(50),
 	@itemprice decimal,
@@ -299,7 +299,7 @@ as
 	(@id, @name, @itemprice, @availabledate, @pricestypeid)
 go
 
-create procedure Eksarov.GetByPricesTypeId_Price
+create procedure Eksarov.GetByTypeSorted_Prices
 	@pricestypeid int
 as
 	select
@@ -310,6 +310,20 @@ as
 		, PricesTypeId
 	from [Eksarov].[Prices]
 	where PricesTypeId = @pricestypeid
+	order by Id
+go
+
+create procedure Eksarov.GetById_Prices
+	@id int
+as
+	select
+		Id
+		, Name
+		, ItemPrice
+		, AvailableDate
+		, PricesTypeId
+	from [Eksarov].[Prices]
+	where id = @id
 go
 
 create procedure Eksarov.UpdateById_Prices
@@ -359,7 +373,9 @@ execute Eksarov.Create_Price
 	@availabledate = '2023-10-18', 
 	@pricestypeid = 1
 
-execute Eksarov.GetByPricesTypeId_Prices @id = 2
+execute Eksarov.GetByTypeSorted_Prices @pricestypeid = 2
+
+execute Eksarov.GetById_Prices @id = 2
 
 execute Eksarov.UpdateById_Prices
 	@id = 4,
