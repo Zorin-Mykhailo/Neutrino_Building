@@ -287,7 +287,7 @@ go
 alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
 go
 
-create procedure Eksarov.Create_Prices
+create procedure Eksarov.Create_Price
 	@id int,
 	@name nvarchar(50),
 	@itemprice decimal,
@@ -331,7 +331,7 @@ create procedure Eksarov.GetByTypeJoined_PricesType
 as
 	select
 		Id
-		, PricesTypeName
+		, PriceTypeName
 	from [Eksarov].[PricesType]
 	join [Eksarov].[Prices] on [PricesType].Id = [Prices].PricesTypeId
 	where Id = @id 
@@ -385,6 +385,8 @@ execute Eksarov.Create_Price
 	@pricestypeid = 1
 
 execute Eksarov.GetByTypeSorted_Prices @pricestypeid = 2
+
+execute Eksarov.GetByTypeJoined_PricesType @id = 2
 
 execute Eksarov.GetById_Prices @id = 2
 
