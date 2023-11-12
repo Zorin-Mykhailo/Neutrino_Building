@@ -260,22 +260,18 @@ go
 create table [Eksarov].[PricesType]
 (
 Id int primary key,
-PriceTypeName nvarchar(20)
+PriceTypeName nvarchar(50)
 )
 go
 
 create table [Eksarov].[Prices]
 (
 Id int primary key,
-Name nvarchar(20),
+Name nvarchar(50),
 ItemPrice Decimal,
 AvailableDate Date,
 PricesTypeId int foreign key references [Eksarov].[PricesType]
 )
-go
-
-
-alter table [Eksarov].[PricesType] alter column [PriceTypeName] nvarchar(50)
 go
 
 insert into [Eksarov].[PricesType] values 
@@ -284,8 +280,6 @@ insert into [Eksarov].[PricesType] values
 (3, 'Instrument')
 go
 
-alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
-go
 
 create procedure Eksarov.Create_Price
 	@id int,
@@ -299,7 +293,7 @@ as
 	(@id, @name, @itemprice, @availabledate, @pricestypeid)
 go
 
-create procedure Eksarov.GetByTypeSorted_Prices
+create procedure Eksarov.Prices_FilterByType
 	@pricestypeid int
 as
 	select
@@ -326,15 +320,18 @@ as
 	where id = @id
 go
 
-create procedure Eksarov.GetByTypeJoined_PricesType
+create procedure Eksarov.ExtendedPrices_FilterByPriceKind
     @id int
 as
 	select
-		Id
-		, PriceTypeName
-	from [Eksarov].[PricesType]
-	join [Eksarov].[Prices] on [PricesType].Id = [Prices].PricesTypeId
-	where Id = @id 
+		_prices.Id as price_id
+		, _prices.Name as item_name
+		, _prices.ItemPrice as item_price
+		, _prices.AvailableDate as item_available_date
+		, _prices.PricesTypeId as prices_kind_id
+		, _pricesType.PriceTypeName as prices_kind_name
+	from [Eksarov].[Prices] as _prices join [Eksarov].[PricesType] as _pricesType on _pricesType.Id = _prices.PricesTypeId
+	where _prices.PricesTypeId = @id 
 go
 
 create procedure Eksarov.UpdateById_Prices
@@ -355,6 +352,9 @@ as
 	delete from [Eksarov].[Prices]
 	where id = @id
 go
+
+create nonclustered index IX_Prices_Id 
+       on [Eksarov].[Prices] (Id)
 
 execute Eksarov.Create_Price
 	@id = 1,
@@ -384,9 +384,9 @@ execute Eksarov.Create_Price
 	@availabledate = '2023-10-18', 
 	@pricestypeid = 1
 
-execute Eksarov.GetByTypeSorted_Prices @pricestypeid = 2
+execute Eksarov.Prices_FilterByType @pricestypeid = 2
 
-execute Eksarov.GetByTypeJoined_PricesType @id = 2
+execute Eksarov.ExtendedPrices_FilterByPriceKind @id = 2
 
 execute Eksarov.GetById_Prices @id = 2
 
