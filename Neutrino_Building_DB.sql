@@ -262,6 +262,7 @@ create table [Eksarov].[PricesType]
 Id int primary key,
 PriceTypeName nvarchar(20)
 )
+go
 
 create table [Eksarov].[Prices]
 (
@@ -271,23 +272,61 @@ ItemPrice Decimal,
 AvailableDate Date,
 PricesTypeId int foreign key references [Eksarov].[PricesType]
 )
+go
+
 
 alter table [Eksarov].[PricesType] alter column [PriceTypeName] nvarchar(50)
+go
 
 insert into [Eksarov].[PricesType] values 
 (1, 'Service'),
 (2, 'Material'),
 (3, 'Instrument')
+go
 
 alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
+go
 
-insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
-(1, 'Cement bag', 168.25, '2023-10-18',2),  
-(2, 'Plaster bag', 126.0, '2023-10-18',2),
-(3, 'Putty bag', 450.0, '2023-10-18',2),
-(4, 'Laser level', 2250.0, '2023-10-18',3),
-(5, 'Jack hammer', 3100.0, '2023-10-18',3),
-(6, 'Pack of screwdrivers', 899.0, '2023-10-18',3),
-(7, 'Roof fix', 880.0, '2023-10-18',1),
-(8, 'Auto delivery', 1100.0, '2023-10-18',1),
-(9, 'Electrician consultation', 500.0, '2023-10-18',1)
+create procedure Eksarov.Create_Price
+	@id int,
+	@name nvarchar(50),
+	@itemprice decimal,
+	@availabledate Date,
+	@pricestypeid int
+as
+	insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId)
+	values
+	(@id, @name, @itemprice, @availabledate, @pricestypeid)
+go
+
+create procedure Eksarov.GetByPricesTypeId_Price
+	@pricestypeid int
+as
+	select
+		Id
+		, Name
+		, ItemPrice
+		, AvailableDate
+		, PricesTypeId
+	from [Eksarov].[Prices]
+	where PricesTypeId = @pricestypeid
+go
+
+create procedure Eksarov.UpdateById_Prices
+	@id int,
+	@name nvarchar(50),
+	@itemprice decimal,
+	@availabledate Date,
+	@pricestypeid int
+as
+	update [Eksarov].[Prices]
+	set Name = @name, ItemPrice = @itemprice, AvailableDate = @availabledate, PricesTypeId = @pricestypeid
+	where id = @id
+go
+
+create procedure Eksarov.DeleteById_Prices
+	@id int
+as
+	delete from [Eksarov].[Prices]
+	where id = @id
+go
