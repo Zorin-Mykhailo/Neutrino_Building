@@ -330,3 +330,42 @@ as
 	delete from [Eksarov].[Prices]
 	where id = @id
 go
+
+execute Eksarov.Create_Price
+	@id = 1,
+	@name = N'Cement bag', 
+	@itemprice = 168.25, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 2
+
+execute Eksarov.Create_Price
+	@id = 2,
+	@name = N'Plaster bag', 
+	@itemprice = 126.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 2
+
+execute Eksarov.Create_Price
+	@id = 3,
+	@name = N'Laser level', 
+	@itemprice = 2250.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 3
+
+execute Eksarov.Create_Price
+	@id = 4,
+	@name = N'Auto delivery', 
+	@itemprice = 1100.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 1
+
+execute Eksarov.GetByPricesTypeId_Prices @id = 2
+
+execute Eksarov.UpdateById_Prices
+	@id = 4,
+	@name = N'Auto delivery (for 1 ton)', 
+	@itemprice = 1200.0, 
+	@availabledate = '2023-10-20', 
+	@pricestypeid = 1
+
+execute Eksarov.DeleteById_Prices @id = 2
