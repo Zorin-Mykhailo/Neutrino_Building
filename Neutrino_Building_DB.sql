@@ -1,4 +1,4 @@
-﻿USE [master]
+USE [master]
 GO
 
 alter database [Neutrino_Building] set single_user with rollback immediate
@@ -192,9 +192,7 @@ execute Zorin.Create_SupportTicket
 	@authorEmail = N'r.ivanov@mail.com', 
 	@text = N'Мій додаток перестав працювати в зв''язку із змінами у вашому API, що були...', 
 	@state = 2
-
-execute Zorin.GetAllItems_SupportTicket
-
+  
 execute Zorin.UpdateById_SupportTicket
 	@id = 1,
 	@title = N'Не працює мишка', 
@@ -206,7 +204,6 @@ execute Zorin.UpdateById_SupportTicket
 execute Zorin.GetById_SupportTicket @id = 1
 execute Zorin.DeleteById_SupportTicket @id = 1
 execute Zorin.GetAllItems_SupportTicket
-
 
 -- █████ 👤 Natalia Pyslyar ████████████████████████████████████████████████████████████████████████████████████████████
 
@@ -291,3 +288,99 @@ insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId
 (7, 'Roof fix', 880.0, '2023-10-18',1),
 (8, 'Auto delivery', 1100.0, '2023-10-18',1),
 (9, 'Electrician consultation', 500.0, '2023-10-18',1)
+
+
+-- █████ 👤 Hordii Moroz ████████████████████████████████████████████████████████████████████████████████████████████
+USE [Neutrino_Building]
+go
+create schema Moroz
+go
+
+create table [Moroz].[CompanyType]
+(
+	Id int primary key,
+	CType nvarchar(50)
+)
+create table [Moroz].[Company]
+(
+	Id int primary key,
+	NameOfCompany nvarchar(50),
+	Description nvarchar(250),
+	Owner nvarchar(250),
+	CTypeId int foreign key references [Moroz].[CompanyType]
+)
+go
+create procedure Moroz.Create_Company
+	@id int,
+	@nameOfCompany nvarchar(50),
+	@description nvarchar(250),
+	@owner nvarchar(250)
+as
+	insert into [Moroz].[Company] (Id, NameOfCompany, Description, Owner)
+	values
+	(@id, @nameOfCompany, @description, @owner)
+go
+
+create procedure Moroz.GetAllItems_Company
+as
+	select
+		Id, NameOfCompany, Description, Owner
+	from [Moroz].[Company]
+go
+
+create procedure Moroz.GetById_Company
+	@id int
+as
+	select
+		Id, NameOfCompany, Description, Owner
+	from [Moroz].[Company]
+	where id = @id
+go
+
+create procedure Moroz.UpdateById_Company
+	@id int,
+	@nameOfCompany nvarchar(50),
+	@description nvarchar(250),
+	@owner nvarchar(250)
+as
+	update [Moroz].[Company]
+	set NameOfCompany = @nameOfCompany, Description = @description, Owner = @owner
+	where id = @id
+go
+
+create procedure Moroz.DeleteById_Company
+	@id int
+as
+	delete from [Moroz].[Company]
+	where id = @id
+go
+
+execute Moroz.Create_Company
+	@id = 1,
+	@nameOfCompany = 'OBID',
+	@description = 'We are grate small company :3',
+	@owner = 'George'
+
+execute Moroz.Create_Company
+	@id = 2,
+	@nameOfCompany = 'ASD',
+	@description = 'Ass seak Destroyers',
+	@owner = 'Obama'
+
+execute Moroz.Create_Company
+	@id = 3,
+	@nameOfCompany = 'Aler dance',
+	@description = 'Papaute ute ute',
+	@owner = 'Bold guy'
+
+execute Moroz.GetAllItems_Company
+
+execute Moroz.UpdateById_Company
+	@id = 3,
+	@nameOfCompany = 'Aler dance taram pam param pam',
+	@description = 'UTEEE Papaute ute ute papa ute',
+	@owner = 'Very cool YEAH'
+
+execute Moroz.GetById_Company @id = 1
+execute Moroz.DeleteById_Company @id = 2
+execute Moroz.GetAllItems_Company
