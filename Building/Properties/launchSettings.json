@@ -1,12 +1,5 @@
 {
   "profiles": {
-    "WSL": {
-      "commandName": "WSL2",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Dev"
-      },
-      "distributionName": ""
-    },
     "Dev": {
       "commandName": "Project",
       "environmentVariables": {
