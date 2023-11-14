@@ -24,7 +24,7 @@ public class Migration__202311140001 : Migration
                 ON  PRIMARY 
             ( NAME = N'Neutrino_Building__DATA', FILENAME = N'C:\_ DB\Neutrino\Neutrino_Building__Data.mdf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
                 LOG ON 
-            ( NAME = N'Neutrino_Building__LOG', FILENAME = N'C:\_ DB\Neutrino\Neutrino_Building_LOG.ldf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
+            ( NAME = N'Neutrino_Building__LOG', FILENAME = N'C:\_ DB\Neutrino\Neutrino_Building__LOG.ldf' , SIZE = 131072KB , FILEGROWTH = 131072KB )
 
             ALTER DATABASE [Neutrino_Building] SET COMPATIBILITY_LEVEL = 150
             ALTER DATABASE [Neutrino_Building] SET ANSI_NULL_DEFAULT OFF 

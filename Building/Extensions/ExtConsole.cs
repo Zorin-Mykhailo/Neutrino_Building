@@ -2,6 +2,34 @@
 
 public static class ExtConsole
 {
+    public static void Out(this string text, ConsoleColor? foregroundColor = null, ConsoleColor? backgroundColor = null)
+    {
+        ConsoleColor prevForeColor = Console.ForegroundColor;
+        ConsoleColor prevBackColor = Console.BackgroundColor;
+
+        Console.ForegroundColor = foregroundColor ?? prevForeColor;
+        Console.BackgroundColor = backgroundColor ?? prevBackColor;
+
+        Console.Write(text);
+
+        Console.ForegroundColor = prevForeColor;
+        Console.BackgroundColor = prevBackColor;
+    }
+
+    public static void OutLine(this string text, ConsoleColor? foregroundColor = null, ConsoleColor? backgroundColor = null)
+    {
+        ConsoleColor prevForeColor = Console.ForegroundColor;
+        ConsoleColor prevBackColor = Console.BackgroundColor;
+
+        Console.ForegroundColor = foregroundColor ?? prevForeColor;
+        Console.BackgroundColor = backgroundColor ?? prevBackColor;
+
+        Console.WriteLine(text);
+
+        Console.ForegroundColor = prevForeColor;
+        Console.BackgroundColor = prevBackColor;
+    }
+
     public static void ShowError(string errorText)
     {
         ConsoleColor prevForeColor = Console.ForegroundColor;

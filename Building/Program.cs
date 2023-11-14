@@ -1,16 +1,26 @@
 ﻿#define ZorinM__HW10_ExceptionsHandling
 
 using Building.DataModel.Master;
+using FluentMigrator.Runner;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System.Text;
 
 namespace Building;
 
 internal class Program
 {
+    private static IConfigurationRoot Config;
+
     static void Main(string[] args)
     {
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;
+
+        AppStartup();
+
+        return;
 
         MainMenu mainMenu = new()
         {
@@ -19,21 +29,45 @@ internal class Program
             SupportTickets = GetMenuItemsSet_Support(),
             Prices = GetMenuItemsSet_Prices(),
             Masters = GetMenuItemsSet_Masters()
-        };        
+        };
 
         mainMenu.ShowMenu();
-
-#if ZorinM__HW10_ExceptionsHandling
-        // From Closed to Reopened → NotImplementedException
-        // mainMenu.SupportTickets[3].State = SupportTicketState.Reopened;
-
-        // From InProgres to Reopened → ArgumentException with inner NotImplementedException
-        mainMenu.SupportTickets[2].State = SupportTicketState.Reopened;
-
-        // From InProgres to ForgotenState → SystemException (with rewriting stack trace)
-        // mainMenu.SupportTickets[2].State = SupportTicketState.ForgotenState;
-#endif
     }
+
+    private static void AppStartup()
+    {
+        string? lauchSettingsEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        $"Current environment: {lauchSettingsEnv}".OutLine(ConsoleColor.Magenta);
+        ConfigurationBuilder builder = new ();
+        _ = builder
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("App/Settings/appsettings.json", false, true)
+            .AddJsonFile($"App/Settings/appsettings.{lauchSettingsEnv}.json", false, true);
+        Config = builder.Build();
+
+        IServiceProvider serviceProvider = CreateServices();
+        using IServiceScope scope = serviceProvider.CreateScope();
+        RunMigration(scope.ServiceProvider);
+    }
+
+    private static IServiceProvider CreateServices()
+    {
+        return new ServiceCollection()
+            .AddLogging(x => x.AddFluentMigratorConsole())
+            .AddFluentMigratorCore()
+            .ConfigureRunner(c => c.AddSqlServer2016()
+                .WithGlobalConnectionString(Config.GetConnectionString(""))
+                .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations())
+            .BuildServiceProvider(false);
+    }
+
+    private static void RunMigration(IServiceProvider serviceProvider)
+    {
+        var mirationService = serviceProvider.GetRequiredService<IMigrationRunner>();
+        mirationService.ListMigrations();
+        mirationService.MigrateUp();
+    }
+
 
     private static SetOfArticles GetMenuItemsSet_Articles()
     {
