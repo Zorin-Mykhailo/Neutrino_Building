@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{077633D5
 		TechTasks.md = TechTasks.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbExecutor", "DbExecutor\DbExecutor.csproj", "{10BE8895-CE08-4714-87A1-FACDA052449A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A641C950-37B6-4102-A9A0-1246324F629F} = {A641C950-37B6-4102-A9A0-1246324F629F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +30,10 @@ Global
 		{A641C950-37B6-4102-A9A0-1246324F629F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A641C950-37B6-4102-A9A0-1246324F629F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A641C950-37B6-4102-A9A0-1246324F629F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BE8895-CE08-4714-87A1-FACDA052449A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BE8895-CE08-4714-87A1-FACDA052449A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BE8895-CE08-4714-87A1-FACDA052449A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BE8895-CE08-4714-87A1-FACDA052449A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
