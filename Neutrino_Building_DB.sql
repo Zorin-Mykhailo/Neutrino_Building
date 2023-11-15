@@ -241,9 +241,75 @@ insert into [Pyslyar].[MasterTypes] values
 (8, 'General')
 
 insert into [Pyslyar].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
-(1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5)
+(1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5);
+go
 
+create procedure Pyslyar.CreateMaster
+	@FirstName nvarchar(40),
+	@lastName nvarchar(40),
+	@Email nvarchar(40),
+	@PhoneNumber nvarchar(40),
+	@MasterTypeId int
+as
+	insert into [Pyslyar].[Masters] (FirstName, lastName, Email, PhoneNumber, MasterTypeId)
+	values
+	(@FirstName, @lastName, @Email, @PhoneNumber, @MasterTypeId)
+go
 
+create procedure Pyslyar.GetAllMasters
+as
+	select
+		Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId
+	from [Pyslyar].[Masters]
+go
+
+create procedure Pyslyar.GetMasterById
+	@id int
+as
+	select
+		Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId
+	from [Pyslyar].[Masters]
+	where id = @id
+go
+
+create procedure Pyslyar.UpdateMasterById
+	@id int,
+	@FirstName nvarchar(40),
+	@lastName nvarchar(40),
+	@Email nvarchar(40),
+	@PhoneNumber nvarchar(40),
+	@MasterTypeId int
+as
+	update [Pyslyar].[Masters]
+	set FirstName = @FirstName, lastName = @lastName, Email = @Email, PhoneNumber = @PhoneNumber, MasterTypeId = @MasterTypeId
+	where id = @id
+go
+
+create procedure Pyslyar.DeleteMasterById
+	@id int
+as
+	delete from [Pyslyar].[Masters]
+	where id = @id
+go
+
+execute Pyslyar.CreateMaster
+	@FirstName = 'Natalie', 
+	@lastName = 'Portman',
+	@Email = 'actress@gmail.com',
+	@PhoneNumber = '+1359872049',
+	@MasterTypeId = 3
+  
+execute Pyslyar.UpdateMasterById
+	@id = 1,
+	@FirstName = 'Blair', 
+	@lastName = 'Wolderf',
+	@Email = 'gossip@gmail.com',
+	@PhoneNumber = '+1359879049',
+	@MasterTypeId = 2
+
+execute Pyslyar.GetMasterById @id = 1
+execute Pyslyar.DeleteMasterById @id = 1
+execute Pyslyar.GetAllMasters
 
 
 
