@@ -386,5 +386,5 @@ execute Moroz.UpdateById_Company
 
 execute Moroz.GetById_Company @id = 1
 execute Moroz.DeleteById_Company @id = 2
-execute Moroz.GetAllItems_Company
+	
 
