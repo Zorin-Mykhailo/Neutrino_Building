@@ -6,16 +6,10 @@
         "ASPNETCORE_ENVIRONMENT": "Dev"
       }
     },
-    "QA": {
+    "Int": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "QA"
-      }
-    },
-    "Staging": {
-      "commandName": "Project",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Int"
       }
     },
     "Prod": {
@@ -24,10 +18,16 @@
         "ASPNETCORE_ENVIRONMENT": "Prod"
       }
     },
-    "Int": {
+    "Qa": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Int"
+        "ASPNETCORE_ENVIRONMENT": "Qa"
+      }
+    },
+    "Staging": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     }
   }

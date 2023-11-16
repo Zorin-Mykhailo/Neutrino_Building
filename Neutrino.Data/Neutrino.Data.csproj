@@ -1,32 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-   
-    <Compile Remove="DataModel\MainPage\**" />
-    <Compile Remove="DataModel\Masters\**" />
-    <Compile Remove="DataModel\Users\**" />
-
-    <EmbeddedResource Remove="DataModel\MainPage\**" />
-    <EmbeddedResource Remove="DataModel\Masters\**" />
-    <EmbeddedResource Remove="DataModel\Users\**" />
-
-    <None Remove="DataModel\MainPage\**" />
-    <None Remove="DataModel\Masters\**" />
-    <None Remove="DataModel\Users\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.21" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Z.Dapper.Plus" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
