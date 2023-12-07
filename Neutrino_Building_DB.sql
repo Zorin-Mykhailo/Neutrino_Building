@@ -1,4 +1,4 @@
-﻿﻿USE [master]
+USE [master]
 GO
 
 alter database [Neutrino_Building] set single_user with rollback immediate
@@ -192,9 +192,7 @@ execute Zorin.Create_SupportTicket
 	@authorEmail = N'r.ivanov@mail.com', 
 	@text = N'Мій додаток перестав працювати в зв''язку із змінами у вашому API, що були...', 
 	@state = 2
-
-execute Zorin.GetAllItems_SupportTicket
-
+  
 execute Zorin.UpdateById_SupportTicket
 	@id = 1,
 	@title = N'Не працює мишка', 
@@ -206,7 +204,6 @@ execute Zorin.UpdateById_SupportTicket
 execute Zorin.GetById_SupportTicket @id = 1
 execute Zorin.DeleteById_SupportTicket @id = 1
 execute Zorin.GetAllItems_SupportTicket
-
 
 -- █████ 👤 Natalia Pyslyar ████████████████████████████████████████████████████████████████████████████████████████████
 
@@ -244,9 +241,75 @@ insert into [Pyslyar].[MasterTypes] values
 (8, 'General')
 
 insert into [Pyslyar].[Masters] (Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId) values 
-(1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5)
+(1, 'Nataliia', 'Pyslar', 'popelyshkon25@gmail.com', '0999999999', 5);
+go
 
+create procedure Pyslyar.CreateMaster
+	@FirstName nvarchar(40),
+	@lastName nvarchar(40),
+	@Email nvarchar(40),
+	@PhoneNumber nvarchar(40),
+	@MasterTypeId int
+as
+	insert into [Pyslyar].[Masters] (FirstName, lastName, Email, PhoneNumber, MasterTypeId)
+	values
+	(@FirstName, @lastName, @Email, @PhoneNumber, @MasterTypeId)
+go
 
+create procedure Pyslyar.GetAllMasters
+as
+	select
+		Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId
+	from [Pyslyar].[Masters]
+go
+
+create procedure Pyslyar.GetMasterById
+	@id int
+as
+	select
+		Id, FirstName, lastName, Email, PhoneNumber, MasterTypeId
+	from [Pyslyar].[Masters]
+	where id = @id
+go
+
+create procedure Pyslyar.UpdateMasterById
+	@id int,
+	@FirstName nvarchar(40),
+	@lastName nvarchar(40),
+	@Email nvarchar(40),
+	@PhoneNumber nvarchar(40),
+	@MasterTypeId int
+as
+	update [Pyslyar].[Masters]
+	set FirstName = @FirstName, lastName = @lastName, Email = @Email, PhoneNumber = @PhoneNumber, MasterTypeId = @MasterTypeId
+	where id = @id
+go
+
+create procedure Pyslyar.DeleteMasterById
+	@id int
+as
+	delete from [Pyslyar].[Masters]
+	where id = @id
+go
+
+execute Pyslyar.CreateMaster
+	@FirstName = 'Natalie', 
+	@lastName = 'Portman',
+	@Email = 'actress@gmail.com',
+	@PhoneNumber = '+1359872049',
+	@MasterTypeId = 3
+  
+execute Pyslyar.UpdateMasterById
+	@id = 1,
+	@FirstName = 'Blair', 
+	@lastName = 'Wolderf',
+	@Email = 'gossip@gmail.com',
+	@PhoneNumber = '+1359879049',
+	@MasterTypeId = 2
+
+execute Pyslyar.GetMasterById @id = 1
+execute Pyslyar.DeleteMasterById @id = 1
+execute Pyslyar.GetAllMasters
 
 
 
@@ -260,37 +323,144 @@ go
 create table [Eksarov].[PricesType]
 (
 Id int primary key,
-PriceTypeName nvarchar(20)
+PriceTypeName nvarchar(50)
 )
+go
 
 create table [Eksarov].[Prices]
 (
 Id int primary key,
-Name nvarchar(20),
+Name nvarchar(50),
 ItemPrice Decimal,
 AvailableDate Date,
 PricesTypeId int foreign key references [Eksarov].[PricesType]
 )
-
-alter table [Eksarov].[PricesType] alter column [PriceTypeName] nvarchar(50)
+go
 
 insert into [Eksarov].[PricesType] values 
 (1, 'Service'),
 (2, 'Material'),
 (3, 'Instrument')
+go
 
-alter table [Eksarov].[Prices] alter column [Name] nvarchar(50)
 
-insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId) values
-(1, 'Cement bag', 168.25, '2023-10-18',2),  
-(2, 'Plaster bag', 126.0, '2023-10-18',2),
-(3, 'Putty bag', 450.0, '2023-10-18',2),
-(4, 'Laser level', 2250.0, '2023-10-18',3),
-(5, 'Jack hammer', 3100.0, '2023-10-18',3),
-(6, 'Pack of screwdrivers', 899.0, '2023-10-18',3),
-(7, 'Roof fix', 880.0, '2023-10-18',1),
-(8, 'Auto delivery', 1100.0, '2023-10-18',1),
-(9, 'Electrician consultation', 500.0, '2023-10-18',1)
+create procedure Eksarov.Create_Price
+	@id int,
+	@name nvarchar(50),
+	@itemprice decimal,
+	@availabledate Date,
+	@pricestypeid int
+as
+	insert into [Eksarov].[Prices] (Id, Name, ItemPrice, AvailableDate, PricesTypeId)
+	values
+	(@id, @name, @itemprice, @availabledate, @pricestypeid)
+go
+
+create procedure Eksarov.Prices_FilterByType
+	@pricestypeid int
+as
+	select
+		Id
+		, Name
+		, ItemPrice
+		, AvailableDate
+		, PricesTypeId
+	from [Eksarov].[Prices]
+	where PricesTypeId = @pricestypeid
+	order by Id
+go
+
+create procedure Eksarov.GetById_Prices
+	@id int
+as
+	select
+		Id
+		, Name
+		, ItemPrice
+		, AvailableDate
+		, PricesTypeId
+	from [Eksarov].[Prices]
+	where id = @id
+go
+
+create procedure Eksarov.ExtendedPrices_FilterByPriceKind
+    @id int
+as
+	select
+		_prices.Id as price_id
+		, _prices.Name as item_name
+		, _prices.ItemPrice as item_price
+		, _prices.AvailableDate as item_available_date
+		, _prices.PricesTypeId as prices_kind_id
+		, _pricesType.PriceTypeName as prices_kind_name
+	from [Eksarov].[Prices] as _prices join [Eksarov].[PricesType] as _pricesType on _pricesType.Id = _prices.PricesTypeId
+	where _prices.PricesTypeId = @id 
+go
+
+create procedure Eksarov.UpdateById_Prices
+	@id int,
+	@name nvarchar(50),
+	@itemprice decimal,
+	@availabledate Date,
+	@pricestypeid int
+as
+	update [Eksarov].[Prices]
+	set Name = @name, ItemPrice = @itemprice, AvailableDate = @availabledate, PricesTypeId = @pricestypeid
+	where id = @id
+go
+
+create procedure Eksarov.DeleteById_Prices
+	@id int
+as
+	delete from [Eksarov].[Prices]
+	where id = @id
+go
+
+create nonclustered index IX_Prices_Id 
+       on [Eksarov].[Prices] (Id)
+
+execute Eksarov.Create_Price
+	@id = 1,
+	@name = N'Cement bag', 
+	@itemprice = 168.25, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 2
+
+execute Eksarov.Create_Price
+	@id = 2,
+	@name = N'Plaster bag', 
+	@itemprice = 126.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 2
+
+execute Eksarov.Create_Price
+	@id = 3,
+	@name = N'Laser level', 
+	@itemprice = 2250.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 3
+
+execute Eksarov.Create_Price
+	@id = 4,
+	@name = N'Auto delivery', 
+	@itemprice = 1100.0, 
+	@availabledate = '2023-10-18', 
+	@pricestypeid = 1
+
+execute Eksarov.Prices_FilterByType @pricestypeid = 2
+
+execute Eksarov.ExtendedPrices_FilterByPriceKind @id = 2
+
+execute Eksarov.GetById_Prices @id = 2
+
+execute Eksarov.UpdateById_Prices
+	@id = 4,
+	@name = N'Auto delivery (for 1 ton)', 
+	@itemprice = 1200.0, 
+	@availabledate = '2023-10-20', 
+	@pricestypeid = 1
+
+execute Eksarov.DeleteById_Prices @id = 2
 
 
 -- █████ 👤 Hordii Moroz ████████████████████████████████████████████████████████████████████████████████████████████
@@ -386,5 +556,3 @@ execute Moroz.UpdateById_Company
 
 execute Moroz.GetById_Company @id = 1
 execute Moroz.DeleteById_Company @id = 2
-	
-
