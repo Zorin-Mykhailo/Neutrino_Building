@@ -11,12 +11,13 @@ internal class Program
     private static IConfigurationRoot configuration;
     private static List<CompanyItems> companies = new List<CompanyItems>();
 
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        InitConfig();
+        await InitConfig();
         int answear = 0;
         do
         {
+
             Console.Clear();
             Console.WriteLine("DapperQuery_Moroz-------");
             Console.WriteLine("1. Create Company");
@@ -33,22 +34,22 @@ internal class Program
                     case (0):
                         break;
                     case (1):
-                        CreateCompany();
+                        await CreateCompany();
                         ShowItemsOfCompanyList();
                         Console.ReadKey();
                         break;
                     case (2):
-                        ReadCompany();
+                        await ReadCompany();
                         ShowItemsOfCompanyList();
                         Console.ReadKey();
                         break;
                     case (3):
-                        UpdateCompany();
+                        await UpdateCompany();
                         ShowItemsOfCompanyList();
                         Console.ReadKey();
                         break;
                     case (4):
-                        ReadCompany();
+                        await DeleteCompany();
                         ShowItemsOfCompanyList();
                         Console.ReadKey();
                         break;
@@ -57,21 +58,17 @@ internal class Program
         }
         while(answear != 0);
         Console.WriteLine("End...");
-
         Console.ReadKey();
 
         void ShowItemsOfCompanyList()
         {
             Console.WriteLine("CompanyItems-------");
-            foreach(var item in companies)
-            {
-                Console.WriteLine($"Id:{item.Id}, nameOfCompany:{item.NameOfCompany}, Description: {item.Description}, Owner: {item.Owner}");
-            }
+            companies.ForEach(item => Console.WriteLine($"Id:{item.Id}, nameOfCompany:{item.NameOfCompany}, Description: {item.Description}, Owner: {item.Owner}"));
             Console.WriteLine("-------------------");
         }
     }
 
-    private static void InitConfig()
+    private static async Task InitConfig()
     {
         var builder = new ConfigurationBuilder();
         builder
@@ -83,7 +80,7 @@ internal class Program
         var a = configuration.GetConnectionString("DefaultConnection");
     }
 
-    private static void CreateCompany()
+    private static async Task CreateCompany()
     {
         Console.WriteLine("Input ID:");
         int.TryParse(Console.ReadLine(), out int id);
@@ -98,7 +95,7 @@ internal class Program
         using(SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            connection.Execute("Moroz.Create_Company", new
+            await connection.ExecuteAsync("Moroz.Create_Company", new
             {
                 id,
                 nameOfCompany,
@@ -114,9 +111,9 @@ internal class Program
 
             connection.Close();
         }
-        
+
     }
-    private static void ReadCompany()
+    private static async Task ReadCompany()
     {
         string connectionString = configuration.GetConnectionString("DefaultConnection");
         using(SqlConnection connection = new SqlConnection(connectionString))
@@ -125,7 +122,7 @@ internal class Program
             using(SqlCommand cmd = new SqlCommand("Moroz.GetAllItems_Company", connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                using(SqlDataReader reader = cmd.ExecuteReader())
+                using(SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
                     Console.WriteLine("Read Company-----------");
                     while(reader.Read())
@@ -148,7 +145,7 @@ internal class Program
             connection.Close();
         }
     }
-    private static void UpdateCompany()
+    private static async Task UpdateCompany()
     {
         Console.WriteLine("Input which ID you want to Update:");
         int.TryParse(Console.ReadLine(), out int id);
@@ -163,8 +160,8 @@ internal class Program
         using(SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            CompanyItems previosData = GetByIdCompany(id);
-            connection.Execute("Moroz.UpdateById_Company", new
+            CompanyItems previosData = await GetByIdCompany(id);
+            await connection.ExecuteAsync("Moroz.UpdateById_Company", new
             {
                 id,
                 nameOfCompany,
@@ -184,17 +181,17 @@ internal class Program
         }
     }
 
-    private static CompanyItems GetByIdCompany(int getId)
+    private static async Task<CompanyItems> GetByIdCompany(int getId)
     {
         string connectionString = configuration.GetConnectionString("DefaultConnection");
         using(SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            CompanyItems result = connection.QuerySingleOrDefault<CompanyItems>("Moroz.GetById_Company", new { id = getId }, commandType: CommandType.StoredProcedure);
+            CompanyItems result = await connection.QuerySingleOrDefaultAsync<CompanyItems>("Moroz.GetById_Company", new { id = getId }, commandType: CommandType.StoredProcedure);
             connection.Close();
             if(result != null)
             {
-                //Console.WriteLine($"Id:{result.Id}, nameOfCompany:{result.NameOfCompany}, Description: {result.Description}, Owner: {result.Owner}");
+                Console.WriteLine($"Id:{result.Id}, nameOfCompany:{result.NameOfCompany}, Description: {result.Description}, Owner: {result.Owner}");
                 return result;
             }
             else
@@ -204,7 +201,7 @@ internal class Program
         }
     }
 
-    private static void DeleteCompany()
+    private static async Task DeleteCompany()
     {
         Console.WriteLine("Input which ID you want to Delete:");
         int.TryParse(Console.ReadLine(), out int id);
@@ -212,11 +209,11 @@ internal class Program
         using(SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            CompanyItems previosData = GetByIdCompany(id);
-          
+            CompanyItems previosData = await GetByIdCompany(id);
+
             int deleteIndex = companies.LastIndexOf((previosData));
-            
-            connection.Execute("Moroz.DeleteById_Company", new {id});
+
+            await connection.ExecuteAsync("Moroz.DeleteById_Company", new { id });
             companies.RemoveAt(deleteIndex);
             connection.Close();
         }
