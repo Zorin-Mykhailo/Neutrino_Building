@@ -7,7 +7,7 @@ namespace Building;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.Unicode;
@@ -18,7 +18,7 @@ internal class Program
             Companies = GetMenuItemsSet_Companies(),
             SupportTickets = GetMenuItemsSet_Support(),
             Prices = GetMenuItemsSet_Prices(),
-            Masters = GetMenuItemsSet_Masters()
+            Masters = await GetMenuItemsSet_Masters()
         };        
 
         mainMenu.ShowMenu();
@@ -166,7 +166,7 @@ internal class Program
         return prices;
     }
 
-    private static SetOfMasters GetMenuItemsSet_Masters()
+    private static async Task<SetOfMasters> GetMenuItemsSet_Masters()
     {
         SetOfMasters masters = new (4, "Майстри")
         {
