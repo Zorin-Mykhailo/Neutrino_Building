@@ -21,7 +21,6 @@ public class CompanyItems
     }
     public override bool Equals(object obj)
     {
-     
         if(obj == null || GetType() != obj.GetType())
             return false;
 
@@ -34,8 +33,7 @@ public class CompanyItems
         //Id doesn't repeat!!!!! it isn't mistake 
         unchecked
         {
-            int hash = 17;
-            hash = hash * 23 + Id.GetHashCode();
+            hash = 17 * 23 + Id.GetHashCode();
             return hash;
         }
     }
