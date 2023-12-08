@@ -40,7 +40,7 @@ public class MainMenu
             new (4, "Майстри"),
 #region #Company
             new (5, "Компанії"),
-#endregion #Compan
+#endregion #Company
             // new (2, "Ваш пункт меню"), // Додайте ваш пункт меню
         };
 

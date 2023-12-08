@@ -1,4 +1,6 @@
 ﻿#region #Company
+using System.Security.Cryptography.X509Certificates;
+
 namespace Building;
 public class SetOfCompany : EntitySet<Company>
 {
@@ -14,18 +16,16 @@ public class SetOfCompany : EntitySet<Company>
             new (6, "Закриті"),
         };
     }
-
+    
     protected override WorkWithMenu HandleMenuChoice(int menuItemNumber)
     {
         switch(menuItemNumber)
         {
             case 0:
                 return WorkWithMenu.QuitMenu;
-
             case 1:
                 this.ForEach(e => Console.WriteLine(e));
                 return WorkWithMenu.ContinueWork;
-
             case 2:
                 this.Where(e => e.Actuality == Actuality.Actual).ForEach(e => Console.WriteLine(e));
                 return WorkWithMenu.ContinueWork;
