@@ -21,11 +21,19 @@ public class CompanyItems
     }
     public override bool Equals(object obj)
     {
-        if(obj == null || GetType() != obj.GetType())
-            return false;
-
-        CompanyItems other = (CompanyItems)obj;
-        return Id == other.Id && NameOfCompany == other.NameOfCompany && Description == other.Description && Owner == other.Owner;
+        try
+        {
+            if(obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            CompanyItems other = (CompanyItems)obj;
+            return Id == other.Id && NameOfCompany == other.NameOfCompany && Description == other.Description && Owner == other.Owner;
+        }
+        catch (Exception)
+        {
+            throw new Exception("Didn't pass the test for Equals");
+        }
     }
 
     public override int GetHashCode()
@@ -33,7 +41,7 @@ public class CompanyItems
         //Id doesn't repeat!!!!! it isn't mistake 
         unchecked
         {
-            hash = 17 * 23 + Id.GetHashCode();
+            int hash = 17 * 23 + Id.GetHashCode();
             return hash;
         }
     }

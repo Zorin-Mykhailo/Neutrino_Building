@@ -17,7 +17,6 @@ internal class Program
         int answear = 0;
         do
         {
-
             Console.Clear();
             Console.WriteLine("DapperQuery_Moroz-------");
             Console.WriteLine("1. Create Company");
@@ -71,6 +70,7 @@ internal class Program
     private static async Task InitConfig()
     {
         var builder = new ConfigurationBuilder();
+
         builder
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
